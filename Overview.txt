@@ -1,0 +1,52 @@
+There are 2 primary actors:
+- Employees:
+    - Doctors
+    - Nurses
+    - Assistants
+- Patients
+
+-----------
+
+- Patient:
+    - Appointment
+    - Hospitalization
+    - Bill
+
+- Hospitalization:
+    - Surgeries
+    - Prescriptions
+    - Responsible nurse
+    - Cost
+
+- Appointment:
+    - Prescriptions
+    - Cost
+
+- Surgery:
+    - Doctor
+    - Nurses
+    - Cost
+
+- Emplyee:
+    - Employee ID
+    - Contract details
+
+- Doctor:
+    - Medical license
+    - Specialization
+
+- Nurse:
+    - Hierarchical category
+
+- Perscriptions:
+    - Medicines
+
+- Medicines:
+    - Side effects
+    - Probability of side effects
+    - Severity of side effects
+
+- List of side effects
+
+- Specializations:
+    - Hierarchical rank

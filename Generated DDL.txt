@@ -1,0 +1,137 @@
+CREATE TABLE employee_contract (
+	emp_id		 BIGINT NOT NULL,
+	contract_emp_id	 BIGINT NOT NULL,
+	person_person_no BIGINT,
+	PRIMARY KEY(person_person_no)
+);
+
+CREATE TABLE assistant (
+	doctor				 BIGINT,
+	employee_contract_person_person_no BIGINT,
+	PRIMARY KEY(employee_contract_person_person_no)
+);
+
+CREATE TABLE nurse (
+	field_0				 BIGINT,
+	employee_contract_person_person_no BIGINT,
+	PRIMARY KEY(employee_contract_person_person_no)
+);
+
+CREATE TABLE doctor (
+	field_0				 BIGINT,
+	employee_contract_person_person_no BIGINT,
+	PRIMARY KEY(employee_contract_person_person_no)
+);
+
+CREATE TABLE patient (
+	a		 BIGINT,
+	person_person_no BIGINT,
+	PRIMARY KEY(person_person_no)
+);
+
+CREATE TABLE person (
+	person_no BIGINT,
+	name	 VARCHAR(512) NOT NULL,
+	PRIMARY KEY(person_no)
+);
+
+CREATE TABLE surgery (
+	field_0					 BIGINT,
+	doctor_employee_contract_person_person_no BIGINT NOT NULL,
+	bill_appointment_hospitalization_field_0	 BIGINT NOT NULL,
+	PRIMARY KEY(field_0)
+);
+
+CREATE TABLE perscription (
+	field_0 BIGINT,
+	PRIMARY KEY(field_0)
+);
+
+CREATE TABLE medication (
+	field_0		 BIGINT,
+	perscription_field_0 BIGINT NOT NULL,
+	PRIMARY KEY(field_0)
+);
+
+CREATE TABLE side_effect (
+	field_0 BIGINT,
+	PRIMARY KEY(field_0)
+);
+
+CREATE TABLE bill_appointment_hospitalization (
+	field_0					 BIGINT,
+	appointment_field_0				 BIGINT NOT NULL,
+	hospitalization_field_0			 BIGINT NOT NULL,
+	assistant_employee_contract_person_person_no	 BIGINT NOT NULL,
+	assistant_employee_contract_person_person_no1 BIGINT NOT NULL,
+	doctor_employee_contract_person_person_no	 BIGINT NOT NULL,
+	patient_person_person_no			 BIGINT NOT NULL,
+	patient_person_person_no1			 BIGINT NOT NULL,
+	PRIMARY KEY(field_0)
+);
+
+CREATE TABLE medication_side_effect (
+	medication_field_0	 BIGINT,
+	side_effect_field_0 BIGINT,
+	PRIMARY KEY(medication_field_0,side_effect_field_0)
+);
+
+CREATE TABLE perscription_bill_appointment_hospitalization (
+	perscription_field_0			 BIGINT,
+	bill_appointment_hospitalization_field_0 BIGINT NOT NULL,
+	PRIMARY KEY(perscription_field_0)
+);
+
+CREATE TABLE bill_appointment_hospitalization_perscription (
+	bill_appointment_hospitalization_field_0 BIGINT NOT NULL,
+	perscription_field_0			 BIGINT,
+	PRIMARY KEY(perscription_field_0)
+);
+
+CREATE TABLE nurse_bill_appointment_hospitalization (
+	nurse_employee_contract_person_person_no BIGINT,
+	bill_appointment_hospitalization_field_0 BIGINT NOT NULL,
+	PRIMARY KEY(nurse_employee_contract_person_person_no)
+);
+
+CREATE TABLE nurse_surgery (
+	nurse_employee_contract_person_person_no BIGINT,
+	surgery_field_0				 BIGINT,
+	PRIMARY KEY(nurse_employee_contract_person_person_no,surgery_field_0)
+);
+
+CREATE TABLE bill_appointment_hospitalization_nurse (
+	bill_appointment_hospitalization_field_0 BIGINT,
+	nurse_employee_contract_person_person_no BIGINT,
+	PRIMARY KEY(bill_appointment_hospitalization_field_0,nurse_employee_contract_person_person_no)
+);
+
+ALTER TABLE employee_contract ADD UNIQUE (emp_id, contract_emp_id);
+ALTER TABLE employee_contract ADD CONSTRAINT employee_contract_fk1 FOREIGN KEY (person_person_no) REFERENCES person(person_no);
+ALTER TABLE assistant ADD CONSTRAINT assistant_fk1 FOREIGN KEY (employee_contract_person_person_no) REFERENCES employee_contract(person_person_no);
+ALTER TABLE nurse ADD CONSTRAINT nurse_fk1 FOREIGN KEY (employee_contract_person_person_no) REFERENCES employee_contract(person_person_no);
+ALTER TABLE doctor ADD CONSTRAINT doctor_fk1 FOREIGN KEY (employee_contract_person_person_no) REFERENCES employee_contract(person_person_no);
+ALTER TABLE patient ADD CONSTRAINT patient_fk1 FOREIGN KEY (person_person_no) REFERENCES person(person_no);
+ALTER TABLE surgery ADD CONSTRAINT surgery_fk1 FOREIGN KEY (doctor_employee_contract_person_person_no) REFERENCES doctor(employee_contract_person_person_no);
+ALTER TABLE surgery ADD CONSTRAINT surgery_fk2 FOREIGN KEY (bill_appointment_hospitalization_field_0) REFERENCES bill_appointment_hospitalization(field_0);
+ALTER TABLE medication ADD CONSTRAINT medication_fk1 FOREIGN KEY (perscription_field_0) REFERENCES perscription(field_0);
+ALTER TABLE bill_appointment_hospitalization ADD UNIQUE (appointment_field_0, hospitalization_field_0);
+ALTER TABLE bill_appointment_hospitalization ADD CONSTRAINT bill_appointment_hospitalization_fk1 FOREIGN KEY (assistant_employee_contract_person_person_no) REFERENCES assistant(employee_contract_person_person_no);
+ALTER TABLE bill_appointment_hospitalization ADD CONSTRAINT bill_appointment_hospitalization_fk2 FOREIGN KEY (assistant_employee_contract_person_person_no1) REFERENCES assistant(employee_contract_person_person_no);
+ALTER TABLE bill_appointment_hospitalization ADD CONSTRAINT bill_appointment_hospitalization_fk3 FOREIGN KEY (doctor_employee_contract_person_person_no) REFERENCES doctor(employee_contract_person_person_no);
+ALTER TABLE bill_appointment_hospitalization ADD CONSTRAINT bill_appointment_hospitalization_fk4 FOREIGN KEY (patient_person_person_no) REFERENCES patient(person_person_no);
+ALTER TABLE bill_appointment_hospitalization ADD CONSTRAINT bill_appointment_hospitalization_fk5 FOREIGN KEY (patient_person_person_no1) REFERENCES patient(person_person_no);
+ALTER TABLE medication_side_effect ADD CONSTRAINT medication_side_effect_fk1 FOREIGN KEY (medication_field_0) REFERENCES medication(field_0);
+ALTER TABLE medication_side_effect ADD CONSTRAINT medication_side_effect_fk2 FOREIGN KEY (side_effect_field_0) REFERENCES side_effect(field_0);
+ALTER TABLE perscription_bill_appointment_hospitalization ADD CONSTRAINT perscription_bill_appointment_hospitalization_fk1 FOREIGN KEY (perscription_field_0) REFERENCES perscription(field_0);
+ALTER TABLE perscription_bill_appointment_hospitalization ADD CONSTRAINT perscription_bill_appointment_hospitalization_fk2 FOREIGN KEY (bill_appointment_hospitalization_field_0) REFERENCES bill_appointment_hospitalization(field_0);
+ALTER TABLE bill_appointment_hospitalization_perscription ADD CONSTRAINT bill_appointment_hospitalization_perscription_fk1 FOREIGN KEY (bill_appointment_hospitalization_field_0) REFERENCES bill_appointment_hospitalization(field_0);
+ALTER TABLE bill_appointment_hospitalization_perscription ADD CONSTRAINT bill_appointment_hospitalization_perscription_fk2 FOREIGN KEY (perscription_field_0) REFERENCES perscription(field_0);
+ALTER TABLE nurse_bill_appointment_hospitalization ADD UNIQUE (bill_appointment_hospitalization_field_0);
+ALTER TABLE nurse_bill_appointment_hospitalization ADD CONSTRAINT nurse_bill_appointment_hospitalization_fk1 FOREIGN KEY (nurse_employee_contract_person_person_no) REFERENCES nurse(employee_contract_person_person_no);
+ALTER TABLE nurse_bill_appointment_hospitalization ADD CONSTRAINT nurse_bill_appointment_hospitalization_fk2 FOREIGN KEY (bill_appointment_hospitalization_field_0) REFERENCES bill_appointment_hospitalization(field_0);
+ALTER TABLE nurse_surgery ADD CONSTRAINT nurse_surgery_fk1 FOREIGN KEY (nurse_employee_contract_person_person_no) REFERENCES nurse(employee_contract_person_person_no);
+ALTER TABLE nurse_surgery ADD CONSTRAINT nurse_surgery_fk2 FOREIGN KEY (surgery_field_0) REFERENCES surgery(field_0);
+ALTER TABLE bill_appointment_hospitalization_nurse ADD CONSTRAINT bill_appointment_hospitalization_nurse_fk1 FOREIGN KEY (bill_appointment_hospitalization_field_0) REFERENCES bill_appointment_hospitalization(field_0);
+ALTER TABLE bill_appointment_hospitalization_nurse ADD CONSTRAINT bill_appointment_hospitalization_nurse_fk2 FOREIGN KEY (nurse_employee_contract_person_person_no) REFERENCES nurse(employee_contract_person_person_no);
+
