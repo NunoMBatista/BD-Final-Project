@@ -45,7 +45,17 @@ app.route('/dbproj/register/doctor', methods=['POST']) (register_doctor)
 
 # Authenticate a user
 @app.route('/dbproj/user', methods=['POST'])
-def 
+def authenticate_user():
+    payload = flask.request.get_json()
+    username = payload['email']
+    password = payload['password']
+    
+    # Connect to the database
+    conn = db_connection()
+    cur = conn.cursor()
+    
+    
+    
 
 if __name__ == '__main__':
     # Set up logging
