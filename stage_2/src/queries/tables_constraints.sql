@@ -1,4 +1,5 @@
-ALTER TABLE service_user ADD UNIQUE (phone, email);
+ALTER TABLE service_user ADD UNIQUE (phone);
+ALTER TABLE service_user ADD UNIQUE (email);
 ALTER TABLE service_user ADD CONSTRAINT constraint_name CHECK (--  'name' field only contains letters and spaces
 name ~ '^[a-zA-Z ]+$');
 ALTER TABLE service_user ADD CONSTRAINT constraint_phone CHECK (--  phone - Phone number has to comprise of 9 digits
@@ -44,7 +45,7 @@ ALTER TABLE side_effect ADD UNIQUE (symptom);
 ALTER TABLE side_effect ADD CONSTRAINT constraint_0 CHECK (--  'symptom' field only contains letters and spaces
 symptom~ '^[a-zA-Z ]+$');
 ALTER TABLE bill ADD CONSTRAINT constraint_0 CHECK (-- '~cost' must be positive
-cost> 0);
+cost > 0);
 ALTER TABLE specialization ADD UNIQUE (spec_name);
 ALTER TABLE specialization ADD CONSTRAINT constraint_0 CHECK (--  'spec_name' field only contains letters and spaces
 spec_name~ '^[a-zA-Z ]+$');

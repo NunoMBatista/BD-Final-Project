@@ -12,7 +12,7 @@ from datetime import datetime
 db_connection = None
 logger = logging.getLogger('logger')
 StatusCodes = {
-    'api_error': 400,
+    'bad_request': 400,
     'success': 200,
     'internal_error': 500
 }
@@ -85,3 +85,11 @@ def landing_page():
     </body>
     </html>
     """
+    
+# Check required fields in a payload
+def check_required_fields(payload, required_keys):
+    missing_keys = [key for key in required_keys if key not in payload]
+    if len(missing_keys) > 0:
+        logger.error(f'Missing required fields: {", ".join(missing_keys)}')
+        return False
+    return True

@@ -23,6 +23,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+
+
 CREATE OR REPLACE FUNCTION is_nurse_available(nurse_id bigint, input_date timestamp without time zone)
 RETURNS BOOLEAN AS $$
 DECLARE
@@ -38,6 +41,13 @@ BEGIN
     RETURN is_available;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
 
 CREATE OR REPLACE FUNCTION schedule_surgery(
     input_patient_id bigint, 
@@ -59,6 +69,9 @@ RETURNS TABLE (
     doctor_id INT, 
     date timestamp without time zone
 ) AS $$
+
+
+
 DECLARE
     nurse_role nurse_role;
     new_hospitalization_id bigint;

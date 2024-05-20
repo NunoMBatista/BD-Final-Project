@@ -8,7 +8,7 @@ from datetime import datetime
 from global_functions import db_connection, logger, StatusCodes
 
 def register_patient():
-    # Get the request data
+    # Get the request payload
     payload = flask.request.get_json()
     
     # Connect to the database
@@ -23,7 +23,7 @@ def register_patient():
     missing_keys = [key for key in required_keys if key not in payload]
     if len(missing_keys) > 0:
         # Return an error response
-        response = {'status': StatusCodes['api_error'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
+        response = {'status': StatusCodes['bad_request'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
         return flask.jsonify(response)
     
     # Get the payload values
@@ -35,6 +35,9 @@ def register_patient():
         query = f.read()
     
     try:
+        # Start the transaction
+        cur.execute('BEGIN;')
+        
         # Insert the patient into the service_user table
         cur.execute(query, values)
 
@@ -50,7 +53,7 @@ def register_patient():
         )
 
         # Commit the transaction
-        conn.commit()
+        cur.execute('COMMIT;')
         
         response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
         
@@ -59,7 +62,7 @@ def register_patient():
         response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
         
         # Rollback the transaction
-        conn.rollback()
+        cur.execute('ROLLBACK;')
     
     finally:
         if conn is not None:
@@ -69,7 +72,7 @@ def register_patient():
 
 
 def register_assistant():
-    # Get the request data
+    # Get the request payload
     payload = flask.request.get_json()
     
     # Connect to the database
@@ -85,7 +88,7 @@ def register_assistant():
     
     if len(missing_keys) > 0:       
         # Return an error response
-        response = {'status': StatusCodes['api_error'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
+        response = {'status': StatusCodes['bad_request'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
         return flask.jsonify(response)
     
     # Get the payload values
@@ -97,6 +100,9 @@ def register_assistant():
         query = f.read()
         
     try:
+        # Start the transaction
+        cur.execute('BEGIN;')
+        
         # Insert the assistant into the service_user table
         cur.execute(query, values)
         # Get the user_id
@@ -121,7 +127,7 @@ def register_assistant():
         )
         
         # Commit the transaction
-        conn.commit()
+        cur.execute('COMMIT;')
         
         response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
             
@@ -130,7 +136,7 @@ def register_assistant():
         response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
         
         # Rollback the transaction
-        conn.rollback()
+        cur.execute('ROLLBACK;')
     
     finally:
         if conn is not None:
@@ -140,7 +146,7 @@ def register_assistant():
 
 
 def register_nurse():
-    # Get the request data
+    # Get the request payload
     payload = flask.request.get_json()
     
     # Connect to the database
@@ -156,7 +162,10 @@ def register_nurse():
     
     if len(missing_keys) > 0:       
         # Return an error response
-        response = {'status': StatusCodes['api_error'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
+        response = {
+            'status': StatusCodes['bad_request'], 
+            'errors': f'Missing required field(s): {", ".join(missing_keys)}'
+            }
         return flask.jsonify(response)
     
     # Get the payload values
@@ -168,6 +177,9 @@ def register_nurse():
         query = f.read()
         
     try:
+        # Start the transaction
+        cur.execute('BEGIN;')
+        
         # Insert the nurse into the service_user table
         cur.execute(query, values)
         # Get the user_id
@@ -191,7 +203,7 @@ def register_nurse():
         )
         
         # Commit the transaction
-        conn.commit()
+        cur.execute('COMMIT;')
         
         response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
             
@@ -200,8 +212,8 @@ def register_nurse():
         response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
         
         # Rollback the transaction
-        conn.rollback()
-    
+        cur.execute('ROLLBACK;')
+        
     finally:
         if conn is not None:
             conn.close()
@@ -210,7 +222,7 @@ def register_nurse():
 
 
 def register_doctor():
-    # Get the request data
+    # Get the request payload
     payload = flask.request.get_json()
     
     # Connect to the database
@@ -226,7 +238,7 @@ def register_doctor():
     
     if len(missing_keys) > 0:       
         # Return an error response
-        response = {'status': StatusCodes['api_error'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
+        response = {'status': StatusCodes['bad_request'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
         return flask.jsonify(response)
     
     # Get the payload values
@@ -238,6 +250,9 @@ def register_doctor():
         query = f.read()
         
     try:
+        # Start the transaction
+        cur.execute('BEGIN;')
+        
         # Insert the doctor into the service_user table
         cur.execute(query, values)
         # Get the user_id
@@ -273,7 +288,8 @@ def register_doctor():
             spec_id = cur.fetchone()
             # Check if the specialization exists
             if spec_id is None:
-                response = {'status': StatusCodes['api_error'], 'errors': f'Specialization {spec_name} does not exist'}
+                logger.error(f'POST /dbproj/register/doctor - error: Specialization {spec_name} does not exist')
+                response = {'status': StatusCodes['bad_request'], 'errors': f'Specialization {spec_name} does not exist'}
                 return flask.jsonify(response)
             spec_id = spec_id[0]
 
@@ -286,7 +302,7 @@ def register_doctor():
             )
         
         # Commit the transaction
-        conn.commit()
+        cur.execute('COMMIT;')
         
         response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
             
@@ -295,7 +311,7 @@ def register_doctor():
         response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
         
         # Rollback the transaction
-        conn.rollback()
+        cur.execute('ROLLBACK;')
     
     finally:
         if conn is not None:

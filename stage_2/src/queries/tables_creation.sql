@@ -167,8 +167,8 @@ CREATE TABLE rank_rank (
 
 CREATE TABLE specialization_specialization (
 	specialization_spec_id	 BIGINT,
-	specialization_spec_id1 BIGINT NOT NULL,
-	PRIMARY KEY(specialization_spec_id)
+	specialization_spec_id1 BIGINT NOT NULL
+	--PRIMARY KEY(specialization_spec_id)
 );
 
 CREATE TABLE specialization_doctor (
