@@ -11,7 +11,7 @@ from global_functions import db_connection, logger, StatusCodes, check_required_
 def check_nurse_fields(nurses):
     for nurse in nurses:
         if 'nurse_id' not in nurse or 'role' not in nurse:
-            raise ValueError('Nurses must have id and role')
+            return False
 
 def check_doctor_availability(cur, doctor_id, date):
     # Check if the doctor has no simultaneous appointments
@@ -21,17 +21,21 @@ def check_doctor_availability(cur, doctor_id, date):
     check_doctor_surgery_availability(cur, doctor_id, date)
 
 def check_doctor_appointment_availability(cur, doctor_id, date):
+    # Update lock (no other transaction can update appointment until this transaction is finished)
     cur.execute("""
                 SELECT * FROM appointment 
                 WHERE doctor_employee_contract_service_user_user_id = %s AND app_date = %s
+                FOR UPDATE
                 """, (doctor_id, date))
     if cur.fetchone():
         raise ValueError('Doctor is not available on the selected date')
 
 def check_doctor_surgery_availability(cur, doctor_id, date):
+    # Update lock (no other transaction can update surgery until this transaction is finished)
     cur.execute("""
                 SELECT * FROM surgery 
                 WHERE doctor_employee_contract_service_user_user_id = %s AND surg_date = %s
+                FOR UPDATE
                 """, (doctor_id, date))
     if cur.fetchone():
         raise ValueError('Doctor is not available on the selected date')
@@ -44,19 +48,23 @@ def check_nurse_availability(cur, nurse_id, date):
     check_nurse_surgery_availability(cur, nurse_id, date)
 
 def check_nurse_appointment_availability(cur, nurse_id, date):
+    # Update lock (no other transaction can update enrolment_appointment until this transaction is finished)
     cur.execute("""
                 SELECT ap.* FROM enrolment_appointment ea
                 JOIN appointment ap ON ea.appointment_app_id = ap.app_id
                 WHERE ea.nurse_employee_contract_service_user_user_id = %s AND ap.app_date = %s
+                FOR UPDATE
                 """, (nurse_id, date)) 
     if cur.fetchone():
         raise ValueError('Nurse is not available on the selected date')
 
 def check_nurse_surgery_availability(cur, nurse_id, date):
+    # Update lock (no other transaction can update enrolment_surgery until this transaction is finished)
     cur.execute("""
                 SELECT s.* FROM enrolment_surgery es
                 JOIN surgery s ON es.surgery_surgery_id = s.surgery_id
                 WHERE es.nurse_employee_contract_service_user_user_id = %s AND s.surg_date = %s
+                FOR UPDATE
                 """, (nurse_id, date))
     if cur.fetchone():
         raise ValueError('Nurse is not available on the selected date')
@@ -89,13 +97,17 @@ def schedule_appointment():
     # Get the request payload
     payload = flask.request.get_json()
     
+    print(payload)
+    
     # Get the user ID from the JWT
-    user_id = get_jwt_identity()[0]
+    user_id = get_jwt_identity()
+    
+    print(user_id)
     
     # Connect to the database
     conn = db_connection()
     cur = conn.cursor()
-    
+        
     try: 
         # Start the transaction
         cur.execute("BEGIN;")
@@ -110,7 +122,10 @@ def schedule_appointment():
         nurses = payload.get('nurses', [])
     
         # Check if all nurses have id and role
-        check_nurse_fields(nurses)
+        if(check_nurse_fields(nurses) == False):
+            print("acabado")
+            raise ValueError('Nurses must have an id and a role')
+            
         
         # Check if the doctor and nurses are available
         check_doctor_availability(cur, doctor_id, date)
@@ -128,8 +143,6 @@ def schedule_appointment():
         # Insert the nurses into the enrolement_appointments table
         insert_nurses(cur, app_id, nurses)
                 
-        # Commit the transaction
-        cur.execute("COMMIT;")
 
         response = {
             'status': StatusCodes['success'],
@@ -137,15 +150,19 @@ def schedule_appointment():
         }
         
     except(Exception, psycopg2.DatabaseError) as error:
-        logger.error(error)
+        logger.error(f'POST /dbproj/appointment - error: {error}')
         response = {
             'status': StatusCodes['internal_error'],
-            'errors': 'An error occurred while scheduling the appointment'
+            'errors': str(error)
         }
+
         
         cur.execute("ROLLBACK;")
         
     finally:
+        # Commit the transaction
+        cur.execute("COMMIT;")
+
         if cur is not None:
             cur.close()
             

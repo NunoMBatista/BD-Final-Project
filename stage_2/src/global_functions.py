@@ -3,6 +3,7 @@ import logging
 import psycopg2
 import time
 import jwt
+
 from datetime import datetime
 
 """
@@ -91,5 +92,4 @@ def check_required_fields(payload, required_keys):
     missing_keys = [key for key in required_keys if key not in payload]
     if len(missing_keys) > 0:
         logger.error(f'Missing required fields: {", ".join(missing_keys)}')
-        return False
-    return True
+    return missing_keys

@@ -5,7 +5,8 @@ import time
 import jwt
 from datetime import datetime
 
-from global_functions import db_connection, logger, StatusCodes
+from global_functions import db_connection, logger, StatusCodes, check_required_fields
+from hashing import hash_password
 
 def register_patient():
     # Get the request payload
@@ -19,15 +20,16 @@ def register_patient():
     logger.debug(f'POST /dbproj/register/patient - payload: {payload}')
 
     # Check if all required fields are present
-    required_keys = ['name', 'nationality', 'phone', 'birthday', 'email', 'password']
-    missing_keys = [key for key in required_keys if key not in payload]
-    if len(missing_keys) > 0:
-        # Return an error response
-        response = {'status': StatusCodes['bad_request'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
+    missing_keys = check_required_fields(payload, ['name', 'nationality', 'phone', 'birthday', 'email', 'password'])
+    if (len(missing_keys) > 0):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': f'Missing required field(s): {", ".join(missing_keys)}'
+        }
         return flask.jsonify(response)
     
     # Get the payload values
-    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], payload['password'])
+    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], hash_password(payload['password']))
         
     # Open the query file
     add_service_user_script = 'queries/add_service_user.sql'
@@ -83,16 +85,16 @@ def register_assistant():
     logger.debug(f'POST /dbproj/register/assistant - payload: {payload}')
 
     # Check if all required fields are present
-    required_keys = ['name', 'nationality', 'phone', 'birthday', 'email', 'password', 'contract_start_date', 'contract_end_date']
-    missing_keys = [key for key in required_keys if key not in payload]
-    
-    if len(missing_keys) > 0:       
-        # Return an error response
-        response = {'status': StatusCodes['bad_request'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
+    missing_keys = check_required_fields(payload, ['name', 'nationality', 'phone', 'birthday', 'email', 'password'])
+    if (len(missing_keys) > 0):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': f'Missing required field(s): {", ".join(missing_keys)}'
+        }
         return flask.jsonify(response)
     
     # Get the payload values
-    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], payload['password'])
+    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], hash_password(payload['password']))
     
     # Open the query file
     add_service_user_script = 'queries/add_service_user.sql'
@@ -157,19 +159,17 @@ def register_nurse():
     logger.debug(f'POST /dbproj/register/nurse - payload: {payload}')
 
     # Check if all required fields are present
-    required_keys = ['name', 'nationality', 'phone', 'birthday', 'email', 'password', 'contract_start_date', 'contract_end_date', 'rank_id']
-    missing_keys = [key for key in required_keys if key not in payload]
-    
-    if len(missing_keys) > 0:       
-        # Return an error response
+    missing_keys = check_required_fields(payload, ['name', 'nationality', 'phone', 'birthday', 'email', 'password', 'contract_start_date', 'contract_end_date', 'rank_id'])
+    if (len(missing_keys) > 0):
         response = {
-            'status': StatusCodes['bad_request'], 
+            'status': StatusCodes['bad_request'],
             'errors': f'Missing required field(s): {", ".join(missing_keys)}'
-            }
+        }
         return flask.jsonify(response)
     
+    
     # Get the payload values
-    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], payload['password'])
+    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], hash_password(payload['password']))
     
     # Open the query file
     add_service_user_script = 'queries/add_service_user.sql'
@@ -233,16 +233,16 @@ def register_doctor():
     logger.debug(f'POST /dbproj/register/doctor - payload: {payload}')
 
     # Check if all required fields are present
-    required_keys = ['name', 'nationality', 'phone', 'birthday', 'email', 'password', 'contract_start_date', 'contract_end_date', 'university', 'graduation_date', 'specializations']
-    missing_keys = [key for key in required_keys if key not in payload]
-    
-    if len(missing_keys) > 0:       
-        # Return an error response
-        response = {'status': StatusCodes['bad_request'], 'errors': f'Missing required field(s): {", ".join(missing_keys)}'}
+    missing_keys = check_required_fields(payload, ['name', 'nationality', 'phone', 'birthday', 'email', 'password', 'contract_start_date', 'contract_end_date', 'university', 'graduation_date', 'specializations'])
+    if (len(missing_keys) > 0):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': f'Missing required field(s): {", ".join(missing_keys)}'
+        }
         return flask.jsonify(response)
     
     # Get the payload values
-    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], payload['password'])
+    values = (payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], hash_password(payload['password']))
     
     # Open the query file
     add_service_user_script = 'queries/add_service_user.sql'

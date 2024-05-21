@@ -6,7 +6,8 @@ import datetime
 from flask_jwt_extended import create_access_token, get_jwt, set_access_cookies
 from functools import wraps
 
-from global_functions import db_connection, logger, StatusCodes
+from global_functions import db_connection, logger, StatusCodes, check_required_fields
+from hashing import hash_password, verify_password
 
 # Authenticate a user and return an access token
 def authenticate_user():
@@ -20,36 +21,50 @@ def authenticate_user():
     logger.debug(f'POST /dbproj/user - payload: {payload}')
     
     # Check if all required fields are present
-    required_keys = ['email', 'password']
-    missing_keys = [key for key in required_keys if key not in payload]
-    
-    if len(missing_keys) > 0:
-        # Return an error response
+    missing_keys = check_required_fields(payload, ['email', 'password'])
+    if (len(missing_keys) > 0):
         response = {
             'status': StatusCodes['bad_request'],
-            'errors': f'Missing required field(s): {missing_keys}'
+            'errors': f'Missing required field(s): {", ".join(missing_keys)}'
         }
         return flask.jsonify(response)
-    
-    # Get the values
-    values = (payload['email'], payload['password'])
+        
     
     try:
         # Query the database for the user_id
         cur.execute("""
-                    SELECT user_id FROM service_user
-                    WHERE email = %s AND password = %s
-                    """, values)
-        user_id = cur.fetchone()     
+                    SELECT user_id, password FROM service_user
+                    WHERE email = %s 
+                    """, (payload['email'],))
+        query_return = cur.fetchone()   
         
-        if user_id is None:
+        if query_return is None:
             # Return an error response
             response = {
                 'status': StatusCodes['bad_request'],
                 'errors': 'User not found'
             }
             return flask.jsonify(response)
+        #print("ok1")
         
+        user_id = query_return[0]
+        stored_password = query_return[1]
+
+        print("asf")
+
+        #hash_password(payload['password'])
+        print("ok")
+
+        # Verify the password against the stored hash
+        if not verify_password(stored_password, payload['password']):
+            logger.error('Invalid password was provided')
+            # Return an error response
+            response = {
+                'status': StatusCodes['bad_request'],
+                'errors': 'Invalid password'
+            }
+            return flask.jsonify(response)
+
         # Determine the user's role
         role = None 
         tables = {
@@ -78,7 +93,7 @@ def authenticate_user():
             }
             return flask.jsonify(response)
     
-        logger.debug(f'POST /dbproj/user - user_id: {user_id[0]}, role: {role}')
+        logger.debug(f'POST /dbproj/user - user_id: {user_id}, role: {role}')
     
         # Generate an access token
         additional_claims = {'role': role}
@@ -97,7 +112,7 @@ def authenticate_user():
         logger.error(f'POST /dbproj/user - error: {error}')
         response = flask.make_response(flask.jsonify({
             'status': StatusCodes['internal_error'],
-            'errors': 'Internal server error'
+            'errors': str(error)
         }))
                
         return flask.jsonify(response)
@@ -119,7 +134,7 @@ def role_required(required_role):
                 logger.error(f'Insufficient permissions - required: {required_role}, actual: {claims["role"]}')
                 response = {
                     'status': StatusCodes['bad_request'],
-                    'errors': 'Insufficient permissions'
+                    'errors': f'Insufficient permissions - required: {required_role}, actual: {claims["role"]}'
                 }
                 return flask.jsonify(response)
             # If the user has the required role, call the original function
