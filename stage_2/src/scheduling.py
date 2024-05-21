@@ -33,7 +33,7 @@ def check_doctor_appointment_availability(cur, doctor_id, date):
     if cur.fetchone():
         raise ValueError('Doctor is not available on the selected date')
 
-def check_doctor_surgery_availability(cur, doctor_id, date, interval):
+def check_doctor_surgery_availability(cur, doctor_id, date):
     # Update lock (no other transaction can update surgery until this transaction is finished)
     cur.execute("""
                 SELECT * FROM surgery 
@@ -63,7 +63,7 @@ def check_nurse_appointment_availability(cur, nurse_id, date):
     if cur.fetchone():
         raise ValueError('Nurse is not available on the selected date')
 
-def check_nurse_surgery_availability(cur, nurse_id, date, interval):
+def check_nurse_surgery_availability(cur, nurse_id, date):
     # Update lock (no other transaction can update enrolment_surgery until this transaction is finished)
     cur.execute("""
                 SELECT s.* FROM enrolment_surgery es
@@ -148,9 +148,9 @@ def schedule_appointment():
             
         
         # Check if the doctor and nurses are available
-        check_doctor_availability(cur, doctor_id, date, APPOINTMENT_DURATION)
+        check_doctor_availability(cur, doctor_id, date)
         for nurse in nurses:
-            check_nurse_availability(cur, nurse['nurse_id'], date, APPOINTMENT_DURATION)
+            check_nurse_availability(cur, nurse['nurse_id'], date)
         
             
         # Get the appointment type id

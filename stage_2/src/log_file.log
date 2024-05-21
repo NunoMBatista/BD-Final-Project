@@ -4160,3 +4160,76 @@ INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:43] "POST /dbproj/appointment HTT
 ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
 INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:48] "POST /dbproj/appointment HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:55] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'Jane', 'nationality': 'French', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'ze', 'nationality': 'German', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctor224@gmail.com', 'password': 'Password316', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Alice', 'nationality': 'German', 'phone': '462472124', 'birthday': '1980-01-01', 'email': 'nurse750@gmail.com', 'password': 'Password624', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:07:09] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:07:09] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:07:09] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'Portuguese', 'phone': '659366776', 'birthday': '1980-01-01', 'email': 'nurse904@gmail.com', 'password': 'Password380', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:07:19] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+DEBUG:logger:POST /dbproj/user - user_id: 3, role: patient
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:07:31] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: check_doctor_availability() takes 3 positional arguments but 4 were given
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:07:34] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'John', 'nationality': 'Portuguese', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:08:20] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'ze', 'nationality': 'Spanish', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctor662@gmail.com', 'password': 'Password367', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Cambridge', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:08:24] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'German', 'phone': '123266985', 'birthday': '1980-01-01', 'email': 'nurse964@gmail.com', 'password': 'Password611', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:08:27] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'Italian', 'phone': '230353093', 'birthday': '1980-01-01', 'email': 'nurse740@gmail.com', 'password': 'Password981', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:08:29] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:08:31] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: check_doctor_surgery_availability() missing 1 required positional argument: 'interval'
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:08:32] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'Charlie', 'nationality': 'Italian', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:17] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'ze', 'nationality': 'French', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctor553@gmail.com', 'password': 'Password2', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:23] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'ze', 'nationality': 'Italian', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctor229@gmail.com', 'password': 'Password390', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(222222222) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:27] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'Spanish', 'phone': '143589544', 'birthday': '1980-01-01', 'email': 'nurse35@gmail.com', 'password': 'Password8', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:31] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Bob', 'nationality': 'Italian', 'phone': '589036845', 'birthday': '1980-01-01', 'email': 'nurse185@gmail.com', 'password': 'Password604', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:32] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:40] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:53] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:09:58] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:10:05] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:10:10] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:10:25] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:10:48] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:10:55] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 14:10:58] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m

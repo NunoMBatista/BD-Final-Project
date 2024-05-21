@@ -8,6 +8,65 @@ from datetime import datetime
 from global_functions import db_connection, logger, StatusCodes, check_required_fields
 from hashing import hash_password
 
+def insert_service_user(cur, name, nationality, phone, birthday, email, password):
+    # Open the query file
+    add_service_user_script = 'queries/add_service_user.sql'
+    with open(add_service_user_script, 'r') as f:
+        query = f.read()
+        
+    # Insert the user into the service_user table
+    cur.execute(query, (name, nationality, phone, birthday, email, password))
+    
+    # Get and return the user_id
+    user_id = cur.fetchone()[0]
+    return user_id
+    
+def insert_patient(cur, user_id):
+    cur.execute("""
+                INSERT INTO patient (service_user_user_id)
+                VALUES (%s);
+                """, (str(user_id),))
+    
+
+# def register_service_user(user_type, extra_fields):
+#     # Get the request payload
+#     payload = flask.request.get_json()
+    
+#     # Connect to the database
+#     conn = db_connection()
+#     cur = conn.cursor()
+    
+#     # Write request to debug log
+#     logger.debug(f'POST /dbproj/register/service_user - payload: {payload}')
+    
+#     # Check if all required fields are present
+#     required_fields = ['name', 'nationality', 'phone', 'birthday', 'email', 'password']
+#     missing_keys = check_required_fields(payload, required_fields + extra_fields)
+#     if(len(missing_keys) > 0):
+#         response = {
+#             'status': StatusCodes['bad_request'],
+#             'errors': f'Missing required field(s): {", ".join(missing_keys)}'
+#         }
+#         return flask.jsonify(response)
+    
+#     try:
+#         # Start the transaction
+#         cur.execute('BEGIN;')
+        
+#         # Insert the user into the service_user table
+#         user_id = insert_service_user(cur, payload['name'], payload['nationality'], str(payload['phone']), payload['birthday'], payload['email'], hash_password(payload['password']))
+        
+#         # Insert the user into the specific table
+#         extra_fields_values = tuple([payload[field] for field in extra_fields])
+        
+        
+        
+        
+        
+        
+            
+    
+
 def register_patient():
     # Get the request payload
     payload = flask.request.get_json()
