@@ -18,7 +18,7 @@ StatusCodes = {
     'internal_error': 500
 }
 
-
+APPOINTMENT_DURATION = '30 minutes'
 
 
 """

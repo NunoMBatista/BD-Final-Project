@@ -6,66 +6,70 @@ import jwt
 from datetime import datetime
 from flask_jwt_extended import get_jwt_identity
 
-from global_functions import db_connection, logger, StatusCodes, check_required_fields
+from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION
 
 def check_nurse_fields(nurses):
     for nurse in nurses:
         if 'nurse_id' not in nurse or 'role' not in nurse:
             return False
 
-def check_doctor_availability(cur, doctor_id, date):
+def check_doctor_availability(cur, doctor_id, date, interval):
     # Check if the doctor has no simultaneous appointments
-    check_doctor_appointment_availability(cur, doctor_id, date)
+    check_doctor_appointment_availability(cur, doctor_id, date, interval)
     
     # Check if the doctor has no simultaneous surgeries
-    check_doctor_surgery_availability(cur, doctor_id, date)
+    check_doctor_surgery_availability(cur, doctor_id, date, interval)
 
-def check_doctor_appointment_availability(cur, doctor_id, date):
+def check_doctor_appointment_availability(cur, doctor_id, date, interval):
     # Update lock (no other transaction can update appointment until this transaction is finished)
     cur.execute("""
                 SELECT * FROM appointment 
-                WHERE doctor_employee_contract_service_user_user_id = %s AND app_date = %s
+                WHERE doctor_employee_contract_service_user_user_id = %s AND 
+                (app_date BETWEEN %s::timestamp - INTERVAL %s AND %s::timestamp + INTERVAL %s)
                 FOR UPDATE
-                """, (doctor_id, date))
+                """, (doctor_id, date, interval, date, interval))
     if cur.fetchone():
         raise ValueError('Doctor is not available on the selected date')
 
-def check_doctor_surgery_availability(cur, doctor_id, date):
+def check_doctor_surgery_availability(cur, doctor_id, date, interval):
     # Update lock (no other transaction can update surgery until this transaction is finished)
     cur.execute("""
                 SELECT * FROM surgery 
-                WHERE doctor_employee_contract_service_user_user_id = %s AND surg_date = %s
+                WHERE doctor_employee_contract_service_user_user_id = %s AND 
+                (surg_date BETWEEN %s::timestamp - INTERVAL %s AND %s::timestamp + INTERVAL %s)
                 FOR UPDATE
-                """, (doctor_id, date))
+                """, (doctor_id, date, interval, date, interval))
     if cur.fetchone():
         raise ValueError('Doctor is not available on the selected date')
 
-def check_nurse_availability(cur, nurse_id, date):
+def check_nurse_availability(cur, nurse_id, date, interval):
     # Check if the nurse has no simultaneous appointments
-    check_nurse_appointment_availability(cur, nurse_id, date)
+    check_nurse_appointment_availability(cur, nurse_id, date, interval)
     
     # Check if the nurse has no simultaneous surgeries
-    check_nurse_surgery_availability(cur, nurse_id, date)
+    check_nurse_surgery_availability(cur, nurse_id, date, interval)
 
-def check_nurse_appointment_availability(cur, nurse_id, date):
+def check_nurse_appointment_availability(cur, nurse_id, date, interval):
     # Update lock (no other transaction can update enrolment_appointment until this transaction is finished)
     cur.execute("""
                 SELECT ap.* FROM enrolment_appointment ea
                 JOIN appointment ap ON ea.appointment_app_id = ap.app_id
-                WHERE ea.nurse_employee_contract_service_user_user_id = %s AND ap.app_date = %s
+                WHERE ea.nurse_employee_contract_service_user_user_id = %s AND 
+                (ap.app_date BETWEEN %s::timestamp - INTERVAL %s AND %s::timestamp + INTERVAL %s)
                 FOR UPDATE
-                """, (nurse_id, date)) 
+                """, (nurse_id, date, interval, date, interval)) 
     if cur.fetchone():
         raise ValueError('Nurse is not available on the selected date')
 
-def check_nurse_surgery_availability(cur, nurse_id, date):
+def check_nurse_surgery_availability(cur, nurse_id, date, interval):
     # Update lock (no other transaction can update enrolment_surgery until this transaction is finished)
     cur.execute("""
                 SELECT s.* FROM enrolment_surgery es
                 JOIN surgery s ON es.surgery_surgery_id = s.surgery_id
-                WHERE es.nurse_employee_contract_service_user_user_id = %s AND s.surg_date = %s
+                WHERE es.nurse_employee_contract_service_user_user_id = %s AND 
+                (s.surg_date BETWEEN %s::timestamp - INTERVAL %s AND %s::timestamp + INTERVAL %s)
                 FOR UPDATE
-                """, (nurse_id, date))
+                """, (nurse_id, date, interval, date, interval))
     if cur.fetchone():
         raise ValueError('Nurse is not available on the selected date')
 
@@ -128,10 +132,10 @@ def schedule_appointment():
             
         
         # Check if the doctor and nurses are available
-        check_doctor_availability(cur, doctor_id, date)
+        check_doctor_availability(cur, doctor_id, date, APPOINTMENT_DURATION)
         
         for nurse in nurses:
-            check_nurse_availability(cur, nurse['nurse_id'], date)
+            check_nurse_availability(cur, nurse['nurse_id'], date, APPOINTMENT_DURATION)
         
             
         # Get the appointment type id
