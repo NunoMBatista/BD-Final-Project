@@ -19,7 +19,7 @@ StatusCodes = {
 }
 
 APPOINTMENT_DURATION = '30 minutes'
-
+SURGERY_DURATION = '2 hours'
 
 """
     Global functions

@@ -4138,3 +4138,25 @@ INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:27:49] "POST /dbproj/appointment HTT
 ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
 INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:30:15] "POST /dbproj/appointment HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:30:21] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'Alice', 'nationality': 'Italian', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:16] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'ze', 'nationality': 'German', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctor35@gmail.com', 'password': 'Password294', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:22] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Alice', 'nationality': 'Spanish', 'phone': '136217821', 'birthday': '1980-01-01', 'email': 'nurse295@gmail.com', 'password': 'Password192', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:26] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Bob', 'nationality': 'Italian', 'phone': '554842253', 'birthday': '1980-01-01', 'email': 'nurse687@gmail.com', 'password': 'Password244', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '1'}
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:26] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:29] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:31] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:35] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:43] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:48] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/May/2024 13:40:55] "POST /dbproj/appointment HTTP/1.1" 200 -
