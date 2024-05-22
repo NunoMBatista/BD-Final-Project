@@ -19,6 +19,7 @@ import jwt
 from datetime import timedelta
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
 
+
 from config import Config
 # Import global functions and variables
 from global_functions import db_connection, logger, StatusCodes, run_sql_script, landing_page, check_required_fields
@@ -30,6 +31,10 @@ from authentication import authenticate_user, role_required
 from scheduling import schedule_appointment, schedule_surgery
 # Import the payment function
 from payment import pay_bill
+# Import the get appointments function
+from get_appointments import get_appointments
+# Import the prescription function
+from prescriptions import prescribe_medication
 
 app = flask.Flask(__name__)
 app.config.from_object(Config)
@@ -69,13 +74,24 @@ def authenticate_user_endpoint():
 def schedule_appointment_endpoint():
     return schedule_appointment()
 
+@app.route('/dbproj/appointments/<int:user_id>', methods=['GET'])
+@jwt_required()
+@role_required(['patient', 'doctor'])
+def get_appointments_endpoint(user_id):
+    return get_appointments(user_id)
+    
 @app.route('/dbproj/surgery', methods=['POST'])
 @app.route('/dbproj/surgery/<int:hospitalization_id>', methods=['POST'])
 @jwt_required()
 @role_required('assistant')
 def schedule_surgery_endpoint(hospitalization_id=None):
-    print(hospitalization_id)
     return schedule_surgery(hospitalization_id)
+
+@app.route('/dbproj/prescription', methods=['POST'])
+@jwt_required()
+@role_required('doctor')
+def prescribe_medication_endpoint():
+    return prescribe_medication()
 
 @app.route('/dbproj/bills/<int:bill_id>', methods=['POST'])
 @jwt_required()

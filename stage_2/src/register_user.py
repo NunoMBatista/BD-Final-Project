@@ -116,7 +116,9 @@ def register_patient():
         # Commit the transaction
         cur.execute('COMMIT;')
         
-        response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
+        response = {'status': StatusCodes['success'], 
+                    'errors': None, 
+                    'results': f'user_id: {user_id}'}
         
     except(Exception, psycopg2.DatabaseError) as error:
         logger.error(f'POST /dbproj/register/patient - error: {error}')
@@ -190,7 +192,9 @@ def register_assistant():
         # Commit the transaction
         cur.execute('COMMIT;')
         
-        response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
+        response = {'status': StatusCodes['success'], 
+                    'errors': None,
+                    'results': f'user_id: {user_id}'}
             
     except(Exception, psycopg2.DatabaseError) as error:
         logger.error(f'POST /dbproj/register/assistant - error: {error}')
@@ -264,7 +268,9 @@ def register_nurse():
         # Commit the transaction
         cur.execute('COMMIT;')
         
-        response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
+        response = {'status': StatusCodes['success'], 
+                    'errors': None,                    
+                    'results': f'user_id: {user_id}'}
             
     except(Exception, psycopg2.DatabaseError) as error:
         logger.error(f'POST /dbproj/register/nurse - error: {error}')
@@ -363,7 +369,9 @@ def register_doctor():
         # Commit the transaction
         cur.execute('COMMIT;')
         
-        response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
+        response = {'status': StatusCodes['success'], 
+                    'errors': None,
+                    'results': f'user_id: {user_id}'}
             
     except(Exception, psycopg2.DatabaseError) as error:
         logger.error(f'POST /dbproj/register/doctor - error: {error}')

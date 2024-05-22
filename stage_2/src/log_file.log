@@ -2,550 +2,69 @@ INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 17:48:06] "[33mPUT /departments/69 HTTP/1.1[0m" 404 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'Italian', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:15:37] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:15:42] "[31m[1mPOST /dbproj/appointment HTTP/1.1[0m" 401 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:15:44] "PUT /dbproj/user HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:15:46] "[33mPOST /dbproj/surgery HTTP/1.1[0m" 404 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'Spanish', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:17:53] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:17:55] "PUT /dbproj/user HTTP/1.1" 200 -
-ERROR:logger:Insufficient permissions - required: patient, actual: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:17:57] "POST /dbproj/appointment HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:18:07] "[33mPOST /dbproj/surgery HTTP/1.1[0m" 404 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'French', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:18:35] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:18:36] "PUT /dbproj/user HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:20:21] "[33mPOST /dbproj/surgery HTTP/1.1[0m" 404 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 136, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:21:40] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 136, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:21:59] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'Portuguese', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-ERROR:logger:POST /dbproj/register/assistant - error: duplicate key value violates unique constraint "service_user_phone_key"
-DETAIL:  Key (phone)=(123456789) already exists.
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:56:15] "[31m[1mGET /dbproj/appointments/1 HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'avsdfgc'}
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:56:22] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'pat1', 'nationality': 'Spanish', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'pat1@gmail.com', 'password': 'pat1'}
+ERROR:logger:POST /dbproj/register/patient - error: new row for relation "service_user" violates check constraint "constraint_name"
+DETAIL:  Failing row contains (1, pat1, Spanish, 111111111, 1980-01-01, pat1@gmail.com, \xdfa4ac06d61ff6de9990a93b5d7f5da69b180f0ef1c4cd2ffe0634d21269fe...).
 
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:22:27] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 136, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:22:38] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:56:51] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'pat1@gmail.com', 'password': 'pat1'}
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:57:09] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'German', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:57:49] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'paton@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:58:01] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 2, role: patient
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:58:06] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:59:36] "GET /dbproj/appointments/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 21:59:41] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'French', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:00:13] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:00:40] "POST /dbproj/appointment HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:00:44] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:00:55] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:01:00] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:01:04] "POST /dbproj/appointment HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:01:07] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
 INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 136, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:24:24] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:24:29] "[33mPOST /dbproj/surgery/123 HTTP/1.1[0m" 404 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:24:33] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:24:56] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:07:09] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
 INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:24:58] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:10] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:10] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:11] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:07:51] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:11:26] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:12:08] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
 INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:17] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:25] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:35] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:36] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:36] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:37] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:37] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-ERROR:rest_api:Exception on /dbproj/surgery [POST]
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: schedule_surgery_endpoint() missing 1 required positional argument: 'hospitalization_id'
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:25:41] "[35m[1mPOST /dbproj/surgery HTTP/1.1[0m" 500 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type interval: "2023-01-01T00:11:00Z"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:27:59] "POST /dbproj/surgery HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type interval: "2023-01-01T00:11:00Z"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:28:16] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type interval: "2023-01-01T00:11:00Z"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:28:19] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:28:30] "[31m[1mPOST /dbproj/surgery/123 HTTP/1.1[0m" 400 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:28:33] "[31m[1mPOST /dbproj/surgery HTTP/1.1[0m" 400 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:28:36] "[31m[1mPOST /dbproj/surgery HTTP/1.1[0m" 400 -
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type interval: "2023-01-01T00:11:00Z"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:28:56] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type interval: "2023-01-01T00:11:00Z"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:32:42] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: tuple index out of range
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:40:46] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: tuple index out of range
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:43:49] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: tuple index out of range
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:44:16] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: tuple index out of range
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:44:30] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:49:47] "[31m[1mPOST /dbproj/surgery HTTP/1.1[0m" 401 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:50:20] "PUT /dbproj/user HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: tuple index out of range
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:50:25] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: new row for relation "bill" violates check constraint "constraint_0"
-DETAIL:  Failing row contains (1, 0, f).
-CONTEXT:  SQL statement "INSERT INTO bill (cost, is_payed) 
-    VALUES (0, FALSE) RETURNING bill_id"
-PL/pgSQL function create_hosp_bill_trigger() line 5 at SQL statement
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:55:01] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: new row for relation "bill" violates check constraint "constraint_0"
-DETAIL:  Failing row contains (2, 0, f).
-CONTEXT:  SQL statement "INSERT INTO bill (cost, is_payed) 
-    VALUES (0, FALSE) RETURNING bill_id"
-PL/pgSQL function create_hosp_bill_trigger() line 5 at SQL statement
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 19:59:38] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: new row for relation "bill" violates check constraint "constraint_0"
-DETAIL:  Failing row contains (3, 0, f).
-CONTEXT:  SQL statement "INSERT INTO bill (cost, is_payed) 
-    VALUES (0, FALSE) RETURNING bill_id"
-PL/pgSQL function create_hosp_bill_trigger() line 5 at SQL statement
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:00:20] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'French', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:01:08] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:01:10] "PUT /dbproj/user HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'German', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:06:49] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:06:51] "PUT /dbproj/user HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: null value in column "type" of relation "hospitalization" violates not-null constraint
-DETAIL:  Failing row contains (1, 2023-01-01 00:11:00, 2023-01-01 02:11:00, null, 1, 1, 5).
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:06:53] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'Spanish', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:08:08] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:08:09] "PUT /dbproj/user HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: new row for relation "hospitalization" violates check constraint "constraint_1"
-DETAIL:  Failing row contains (1, 2023-01-01 00:11:00, 2023-01-01 02:11:00, 1, 1, 5).
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:08:10] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'French', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:09:25] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:09:26] "PUT /dbproj/user HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk2"
-DETAIL:  Key (patient_service_user_user_id)=(1) is not present in table "patient".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:09:27] "POST /dbproj/surgery HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'Charlie', 'nationality': 'Spanish', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:09:44] "POST /dbproj/register/patient HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk2"
-DETAIL:  Key (patient_service_user_user_id)=(1) is not present in table "patient".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:09:56] "POST /dbproj/surgery HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk3"
-DETAIL:  Key (nurse_employee_contract_service_user_user_id)=(5) is not present in table "nurse".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:10:02] "POST /dbproj/surgery HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'Italian', 'phone': '450979394', 'birthday': '1980-01-01', 'email': 'nurse476@gmail.com', 'password': 'Password690', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:10:13] "POST /dbproj/register/nurse HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Alice', 'nationality': 'German', 'phone': '291610', 'birthday': '1980-01-01', 'email': 'nurse802@gmail.com', 'password': 'Password559', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
-ERROR:logger:POST /dbproj/register/nurse - error: new row for relation "service_user" violates check constraint "constraint_phone"
-DETAIL:  Failing row contains (4, Alice, German, 291610, 1980-01-01, nurse802@gmail.com, \x9d2a1d51364cd4d7d6bcfba15d3b8994b9edde32f8676dc569a350b206c719...).
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:10:15] "POST /dbproj/register/nurse HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Charlie', 'nationality': 'Italian', 'phone': '488107969', 'birthday': '1980-01-01', 'email': 'nurse774@gmail.com', 'password': 'Password376', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:10:19] "POST /dbproj/register/nurse HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/4 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk2"
-DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(2) is not present in table "doctor".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:10:27] "POST /dbproj/surgery HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'ze', 'nationality': 'German', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctor506@gmail.com', 'password': 'Password688', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:10:31] "POST /dbproj/register/doctor HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:10:37] "POST /dbproj/surgery HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/5 - error: Doctor is not available on the selected date
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:11:32] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/5 - error: syntax error at or near "%"
-LINE 3: ...                     SET start_date = LEAST(start_date, %s),
-                                                                   ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:11:42] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/5 - error: syntax error at or near "%"
-LINE 4: ...                    end_date = GREATEST(end_date, %s::timest...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:17:37] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/5 - error: not all arguments converted during string formatting
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:21:03] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/5 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk1"
-DETAIL:  Key (hospitalization_hosp_id)=(5) is not present in table "hospitalization".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:05] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'Italian', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:34] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'Megan', 'nationality': 'Portuguese', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:36] "POST /dbproj/register/patient HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'ze', 'nationality': 'Spanish', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctor599@gmail.com', 'password': 'Password294', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:38] "POST /dbproj/register/doctor HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'French', 'phone': '657652398', 'birthday': '1980-01-01', 'email': 'nurse765@gmail.com', 'password': 'Password566', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '1'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:41] "POST /dbproj/register/nurse HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'German', 'phone': '101773600', 'birthday': '1980-01-01', 'email': 'nurse577@gmail.com', 'password': 'Password228', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '1'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:42] "POST /dbproj/register/nurse HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:52] "[33mPOST /dbproj/surgery/ HTTP/1.1[0m" 404 -
-ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk3"
-DETAIL:  Key (nurse_employee_contract_service_user_user_id)=(3) is not present in table "nurse".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:24:56] "POST /dbproj/surgery HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/2 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk2"
-DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(6) is not present in table "doctor".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:25:01] "POST /dbproj/surgery HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/3 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk2"
-DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(2) is not present in table "doctor".
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:25:06] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:25:32] "POST /dbproj/surgery HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/4 - error: Doctor is not available on the selected date
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:26:19] "POST /dbproj/surgery/4 HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:26:25] "POST /dbproj/surgery/4 HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:33:34] "PUT /dbproj/user HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:42:31] "[31m[1mPUT /dbproj/user HTTP/1.1[0m" 400 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/4 - error: Doctor is not available on the selected date
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:54:20] "POST /dbproj/surgery/4 HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:54:26] "POST /dbproj/surgery/4 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:12:11] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:13:05] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'docone@gmail.com', 'password': 'docone'}
+DEBUG:logger:POST /dbproj/user - user_id: 3, role: doctor
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:13:11] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/2
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:13:14] "GET /dbproj/appointments/2 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/appointments/1
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 22:13:34] "GET /dbproj/appointments/1 HTTP/1.1" 200 -
 INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080

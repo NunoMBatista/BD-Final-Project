@@ -97,6 +97,7 @@ def authenticate_user():
         # Create a Flask Response object
         response = flask.make_response(flask.jsonify({
             'status': StatusCodes['success'],
+            'errors': None,
             'results': access_token
         }))
         
@@ -119,17 +120,17 @@ def authenticate_user():
     return response
     
 # Decorator to check if the user has the required role
-def role_required(required_role):
+def role_required(required_roles):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs): # Same arguments as the original function
             claims = get_jwt() 
             # Check if the user has the required role
-            if claims['role'] != required_role: 
-                logger.error(f'Insufficient permissions - required: {required_role}, actual: {claims["role"]}')
+            if claims['role'] not in required_roles: 
+                logger.error(f'Insufficient permissions - required: {required_roles}, actual: {claims["role"]}')
                 response = {
                     'status': StatusCodes['bad_request'],
-                    'errors': f'Insufficient permissions - required: {required_role}, actual: {claims["role"]}'
+                    'errors': f'Insufficient permissions - required: {required_roles}, actual: {claims["role"]}'
                 }
                 return flask.jsonify(response)
             # If the user has the required role, call the original function

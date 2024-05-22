@@ -69,3 +69,50 @@ INSERT INTO app_type (type_id, type_name) VALUES (3, 'Specialist Consultation');
 INSERT INTO app_type (type_id, type_name) VALUES (4, 'Physiotherapy');
 
 
+
+
+-- Medication table
+-- Insert medications into the medication table
+INSERT INTO medication (med_id, med_name) VALUES (1, 'Paracetamol');
+INSERT INTO medication (med_id, med_name) VALUES (2, 'Ibuprofen');
+INSERT INTO medication (med_id, med_name) VALUES (3, 'Aspirin');
+INSERT INTO medication (med_id, med_name) VALUES (4, 'Morphine');
+INSERT INTO medication (med_id, med_name) VALUES (5, 'Codeine');
+INSERT INTO medication (med_id, med_name) VALUES (6, 'Quetiapine');
+
+-- Side effect table
+-- Insert side effects into the side effect table
+INSERT INTO side_effect (effect_id, symptom) VALUES (1, 'Nausea');
+INSERT INTO side_effect (effect_id, symptom) VALUES (2, 'Vomiting');
+INSERT INTO side_effect (effect_id, symptom) VALUES (3, 'Diarrhea');
+INSERT INTO side_effect (effect_id, symptom) VALUES (4, 'Constipation');
+INSERT INTO side_effect (effect_id, symptom) VALUES (5, 'Dizziness');
+INSERT INTO side_effect (effect_id, symptom) VALUES (6, 'Headache');
+INSERT INTO side_effect (effect_id, symptom) VALUES (7, 'Insomnia');
+INSERT INTO side_effect (effect_id, symptom) VALUES (8, 'Weight gain');
+INSERT INTO side_effect (effect_id, symptom) VALUES (9, 'Weight loss');
+INSERT INTO side_effect (effect_id, symptom) VALUES (10, 'Dry mouth');
+INSERT INTO side_effect (effect_id, symptom) VALUES (11, 'Blurred vision');
+INSERT INTO side_effect (effect_id, symptom) VALUES (12, 'Tremors');
+
+-- Effect properties table
+-- Insert effect properties into the effect properties table
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.1, 4, 1, 1);
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.3, 6, 3, 1);
+
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.2, 8, 10, 2);
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.3, 6, 6, 2);
+
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.2, 2, 2, 3);
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.3, 6, 3, 3);
+
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.1, 4, 1, 4);
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.2, 2, 2, 4);
+
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.1, 4, 1, 5);
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.3, 6, 3, 5);
+
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.2, 8, 10, 6);
+INSERT INTO effect_properties (probability, severity, side_effect_effect_id, medication_med_id) VALUES (0.3, 6, 6, 6);
+
+

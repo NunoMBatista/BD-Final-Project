@@ -64,7 +64,11 @@ def pay_bill(bill_bill_id): #Isto leva argumentos? Deve levar bill_id
         # Commit the transaction
         cur.execute('COMMIT;')
 
-        response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
+        response = {
+            'status': StatusCodes['success'], 
+            'errors': None,                    
+            'results': f'user_id: {user_id}'}
+        
     except(Exception, psycopg2.DatabaseError) as error:
         if 'cost_check' in str(error):
             logger.error(f'POST /dbproj/dbproj/bills/<int:bill_id> - error: {error}')
