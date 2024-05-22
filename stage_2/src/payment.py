@@ -8,22 +8,18 @@ from flask_jwt_extended import get_jwt_identity
 
 from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION
 
-def pay_bill(): #Isto leva argumentos? Deve levar bill_id
+def pay_bill(bill_bill_id): #Isto leva argumentos? Deve levar bill_id
     # Get the request payload
     payload = flask.request.get_json()
-    
-    print(payload)
-    
+        
     # Get the user ID from the JWT
     user_id = get_jwt_identity()
-    
-    print(user_id)
-    
+        
     # Connect to the database
     conn = db_connection()
     cur = conn.cursor()
     
-    missing_keys = check_required_fields(payload, ['payment_id', 'amount','payment_date', 'payment_method', 'bill_bill_id'])
+    missing_keys = check_required_fields(payload, ['payment_id', 'amount','payment_date', 'payment_method'])
     if (len(missing_keys) > 0):
         response = {
             'status': StatusCodes['bad_request'],
@@ -36,7 +32,6 @@ def pay_bill(): #Isto leva argumentos? Deve levar bill_id
     amount = payload['amount']
     payment_date = payload['payment_date']
     payment_method = payload['payment_method']
-    bill_bill_id = payload['bill_bill_id'] #Nao deve ser preciso
     
     
     # Check if the bill is associated with the user
@@ -58,15 +53,27 @@ def pay_bill(): #Isto leva argumentos? Deve levar bill_id
         cur.execute("INSERT INTO payment (payment_id, amount, payment_date, payment_method, bill_bill_id) VALUES (%s, %s, %s, %s, %s)", 
             (payment_id, amount, payment_date, payment_method, bill_bill_id))
 
+        # Update the cost in the bill and check if it's now 0
+        cur.execute("UPDATE bill SET cost = cost - %s WHERE bill_id = %s RETURNING cost", (amount, bill_bill_id))
+        new_cost = cur.fetchone()[0]
+
+        if new_cost == 0:
+            # If the new cost is 0, update the is_payed field to true
+            cur.execute("UPDATE bill SET is_payed = true WHERE bill_id = %s", (bill_bill_id,))
+
         # Commit the transaction
         cur.execute('COMMIT;')
-        
+
         response = {'status': StatusCodes['success'], 'results': f'user_id: {user_id}'}
     except(Exception, psycopg2.DatabaseError) as error:
-       
-        logger.error(f'POST /dbproj/dbproj/bills/<int:bill_id> - error: {error}')
-        response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
-        
+        if 'cost_check' in str(error):
+            logger.error(f'POST /dbproj/dbproj/bills/<int:bill_id> - error: {error}')
+            response = {'status': StatusCodes['bad_request'], 'errors': str(error)}
+        else:
+            logger.error(f'POST /dbproj/dbproj/bills/<int:bill_id> - error: {error}')
+            response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
+ 
+
         # Rollback the transaction
         cur.execute('ROLLBACK;')
     
@@ -77,15 +84,3 @@ def pay_bill(): #Isto leva argumentos? Deve levar bill_id
     return flask.jsonify(response)   
     
     
-    
-    
-    
-    
-    ''' Talvez noutra função ???'''
-    # Check if the total amount paid matches the cost of the bill
-    cur.execute("SELECT cost FROM bill WHERE bill_id = %s", (bill_bill_id,))
-    bill_cost = cur.fetchone()[0]
-
-    if bill_cost == amount:
-        # If the total amount paid matches the cost of the bill, update the is_payed field to true
-        cur.execute("UPDATE bill SET is_payed = true WHERE bill_id = %s", (bill_bill_id,))

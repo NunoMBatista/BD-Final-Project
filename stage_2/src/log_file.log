@@ -11,3 +11,24 @@ INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'Jane', 'nationality': 'Spanish', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:25:57] "POST /dbproj/register/patient HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:26:06] "[31m[1mPUT /dbproj/user HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:29:32] "[31m[1mPUT /dbproj/user?email=asdf@gmail.com&password=asdf HTTP/1.1[0m" 400 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'Megan', 'nationality': 'Portuguese', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'asdf@gmail.com', 'password': 'asdfasdf'}
+ERROR:logger:POST /dbproj/register/patient - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(111111111) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:30:54] "POST /dbproj/register/patient?email=amigo@gmail.com&password=amigo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:31:55] "[31m[1mPUT /dbproj/user HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:32:16] "[31m[1mPUT /dbproj/user HTTP/1.1[0m" 400 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:34:54] "[31m[1mPUT /dbproj/user HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 20:39:02] "[31m[1mPUT /dbproj/user HTTP/1.1[0m" 400 -
