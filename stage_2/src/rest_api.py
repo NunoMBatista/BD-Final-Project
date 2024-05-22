@@ -80,8 +80,8 @@ def schedule_surgery_endpoint(hospitalization_id=None):
 @app.route('/dbproj/bills/<int:bill_id>', methods=['POST'])
 @jwt_required()
 @role_required('patient')
-def pay_bill_endpoint(bill_id): #Isto leva argumentos?
-    return pay_bill(bill_id) #Isto leva argumentos?
+def pay_bill_endpoint(bill_id): 
+    return pay_bill(bill_id) 
 
 
 
