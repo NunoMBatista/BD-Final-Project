@@ -27,7 +27,7 @@ from register_user import register_patient, register_assistant, register_nurse, 
 # Import the authentication function
 from authentication import authenticate_user, role_required
 # Import the scheduling function
-from scheduling import schedule_appointment
+from scheduling import schedule_appointment, schedule_surgery
 
 app = flask.Flask(__name__)
 app.config.from_object(Config)
@@ -67,6 +67,12 @@ def authenticate_user_endpoint():
 def schedule_appointment_endpoint():
     return schedule_appointment()
 
+@app.route('/dbproj/surgery', methods=['POST'])
+@app.route('/dbproj/surgery/<int:hospitalization_id>', methods=['POST'])
+@jwt_required()
+@role_required('assistant')
+def schedule_surgery_endpoint(hospitalization_id=None):
+    return schedule_surgery(hospitalization_id)
 
 if __name__ == '__main__':
     # Set up logging

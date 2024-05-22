@@ -133,7 +133,14 @@ def schedule_appointment():
         cur.execute("BEGIN;")
         
         # Check if all the required fields are present
-        check_required_fields(payload, ['doctor_id', 'date', 'type'])
+        missing_keys = check_required_fields(payload, ['doctor_id', 'date', 'type'])
+        if (len(missing_keys) > 0):
+            response = {
+                'status': StatusCodes['bad_request'],
+                'errors': f'Missing required field(s): {", ".join(missing_keys)}'
+            }
+            return flask.jsonify(response)
+    
     
         # Get the payload values
         doctor_id = payload['doctor_id']
@@ -143,8 +150,11 @@ def schedule_appointment():
     
         # Check if all nurses have id and role
         if(check_nurse_fields(nurses) == False):
-            print("acabado")
-            raise ValueError('Nurses must have an id and a role')
+            response = {
+                'status': StatusCodes['bad_request'],
+                'errors': 'Nurses must have an id and a role'
+            }
+            return flask.jsonify(response)
             
         
         # Check if the doctor and nurses are available
@@ -185,3 +195,80 @@ def schedule_appointment():
             cur.close()
             
     return flask.jsonify(response)
+
+
+"""
+    While scheduling a surgery, there are possible concurrency issues that need to be addressed.
+
+"""
+def schedule_surgery(hospitalization_id):
+    # Get the request payload
+    payload = flask.request.get_json()
+    
+    # Connect to the database
+    conn = db_connection()
+    cur = conn.cursor()
+    
+        
+    missing_keys = check_required_fields(payload, ['patient_id', 'doctor', 'nurses', 'date', 'type'])
+    if (len(missing_keys) > 0):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': f'Missing required field(s): {", ".join(missing_keys)}'
+        }
+        return flask.jsonify(response)
+    
+    # Get the payload values
+    patient_id = payload['patient_id']
+    doctor_id = payload['doctor']
+    date = payload['date']
+    
+    # At least one nurse is required for a surgery
+    nurses = payload.get('nurses', [])
+    for nurse in nurses:
+        if check_nurse_fields(nurse) == False:
+            response = {
+                'status': StatusCodes['bad_request'],
+                'errors': 'Nurses must have an id and a role'
+            }
+            return flask.jsonify(response)
+            
+
+    try:
+        # Start the transaction
+        cur.execute("BEGIN;")
+        
+        # Check if the doctor and nurses are available
+        check_doctor_availability(cur, doctor_id, date)
+        for nurse in nurses:
+            check_nurse_availability(cur, nurse['nurse_id'], date)
+            
+        # If hospitalization_id is not provided, create a new hospitalization
+        if hospitalization_id is None:
+            cur.execute("""
+                        INSERT INTO hospitalization (patient_service_user_user_id, start_date, end_date, nurse_employee_contract_service_user_user_id)
+                        VALUES(%s, %s, %s, %s, %s)
+                        RETURNING hosp_id
+                        """, (patient_id, date, date + SURGERY_DURATION, nurses[0]['nurse_id']))
+            hospitalization_id = cur.fetchone()[0]
+        else:
+            # Update the hospitalization
+            cur.execute("""
+                        UPDATE hospitalization
+                        SET start_date = LEAST(start_date, %s),
+                            end_date = GREATEST(end_date, %s)
+                        WHERE hosp_id = %s;
+                        """), (date, date + SURGERY_DURATION, hospitalization_id)
+        
+        # Insert the surgery
+        cur.execute("""
+                    INSERT INTO surgery (surg_date, doctor_employee_contract_service_user_user_id, hospitalization_hosp_id, type)
+                    
+                    """)
+            
+        
+                
+        
+            
+        
+        
