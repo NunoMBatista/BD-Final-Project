@@ -89,7 +89,7 @@ def insert_appointment(cur, date, doctor_id, user_id, type_id):
                 """, (date, doctor_id, user_id, type_id))
     return cur.fetchone()[0]
 
-def insert_nurse_enrolment(cur, app_id, nurses):
+def insert_nurse_app_enrolment(cur, app_id, nurses):
     for nurse in nurses:
         cur.execute("""
                     INSERT INTO enrolment_appointment (appointment_app_id, nurse_employee_contract_service_user_user_id, role_role_id) 
@@ -98,6 +98,16 @@ def insert_nurse_enrolment(cur, app_id, nurses):
                         WHERE role_name = %s
                         ))
                     """, (app_id, nurse['nurse_id'], nurse['role']))
+
+def insert_nurse_surg_enrolment(cur, surg_id, nurses):
+    for nurse in nurses:
+        cur.execute("""
+                    INSERT INTO enrolment_surgery (surgery_surgery_id, nurse_employee_contract_service_user_user_id, role_role_id)
+                    VALUES(%s, %s, (
+                        SELECT role_id FROM role
+                        WHERE role_name = %s
+                    ))
+                    """, (surg_id, nurse['nurse_id'], nurse['role']))
 
 
 """
@@ -170,7 +180,7 @@ def schedule_appointment():
         app_id = insert_appointment(cur, date, doctor_id, user_id, type_id)
         
         # Insert the nurses into the enrolement_appointments table
-        insert_nurse_enrolment(cur, app_id, nurses)        
+        insert_nurse_app_enrolment(cur, app_id, nurses)        
 
         response = {
             'status': StatusCodes['success'],
@@ -225,13 +235,12 @@ def schedule_surgery(hospitalization_id):
     
     # At least one nurse is required for a surgery
     nurses = payload.get('nurses', [])
-    for nurse in nurses:
-        if check_nurse_fields(nurse) == False:
-            response = {
-                'status': StatusCodes['bad_request'],
-                'errors': 'Nurses must have an id and a role'
-            }
-            return flask.jsonify(response)
+    if check_nurse_fields(nurses) == False:
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': 'Nurses must have an id and a role'
+        }
+        return flask.jsonify(response)
             
 
     try:
@@ -246,28 +255,62 @@ def schedule_surgery(hospitalization_id):
         # If hospitalization_id is not provided, create a new hospitalization
         if hospitalization_id is None:
             cur.execute("""
-                        INSERT INTO hospitalization (patient_service_user_user_id, start_date, end_date, nurse_employee_contract_service_user_user_id)
-                        VALUES(%s, %s, %s, %s, %s)
+                        INSERT INTO hospitalization (
+                                                    patient_service_user_user_id, 
+                                                    start_date, 
+                                                    end_date, 
+                                                    nurse_employee_contract_service_user_user_id)
+                        VALUES(%s, %s, %s + INTERVAL %s, %s)
                         RETURNING hosp_id
-                        """, (patient_id, date, date + SURGERY_DURATION, nurses[0]['nurse_id']))
+                        """, (patient_id, date, date, SURGERY_DURATION, nurses[0]['nurse_id']))
             hospitalization_id = cur.fetchone()[0]
         else:
+            print("g431ogo")
             # Update the hospitalization
             cur.execute("""
                         UPDATE hospitalization
                         SET start_date = LEAST(start_date, %s),
-                            end_date = GREATEST(end_date, %s)
+                            end_date = GREATEST(end_date, %s + INTERVAL %s)
                         WHERE hosp_id = %s;
-                        """), (date, date + SURGERY_DURATION, hospitalization_id)
+                        """), (date, date, SURGERY_DURATION, hospitalization_id)
         
         # Insert the surgery
+        print("gogo")
         cur.execute("""
-                    INSERT INTO surgery (surg_date, doctor_employee_contract_service_user_user_id, hospitalization_hosp_id, type)
-                    
-                    """)
-            
+                    INSERT INTO surgery (
+                                        surg_date, 
+                                        doctor_employee_contract_service_user_user_id, 
+                                        hospitalization_hosp_id, 
+                                        type)
+                    VALUES(%s, %s, %s, %s)
+                    RETURNING surgery_id
+                    """, (date, doctor_id, hospitalization_id, payload['type']))
+        surgery_id = cur.fetchone()[0]
+        # Insert the nurses into the enrolement_surgery table
+        insert_nurse_surg_enrolment(cur, surgery_id, nurses)
         
-                
+        response = {
+            'status': StatusCodes['success'],
+            'result': f'hospitalization_id: {hospitalization_id}, surgery_id: {surgery_id}, patient_id: {patient_id}, doctor_id: {doctor_id}, date: {date}'
+        }
+        
+    except (Exception, psycopg2.DatabaseError) as error:
+        logger.error(f'POST /dbproj/surgery/{hospitalization_id} - error: {error}')
+        response = {
+            'status' : StatusCodes['internal_error'],
+            'errors' : str(error)
+        }
+        
+        cur.execute("ROLLBACK;")
+
+    finally:
+        # Commit the transaction
+        cur.execute("COMMIT;")
+        
+        if cur is not None:
+            cur.close()
+                    
+    return flask.jsonify(response)    
         
             
         

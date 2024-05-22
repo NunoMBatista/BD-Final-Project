@@ -11,8 +11,8 @@ CREATE TABLE service_user (
 
 CREATE TABLE employee_contract (
 	contract_contract_id BIGSERIAL NOT NULL,
-	contract_start_date	 DATE NOT NULL,
-	contract_end_date	 DATE NOT NULL,
+	contract_start_date	 TIMESTAMP NOT NULL,
+	contract_end_date	 TIMESTAMP NOT NULL,
 	service_user_user_id BIGINT,
 	PRIMARY KEY(service_user_user_id)
 );

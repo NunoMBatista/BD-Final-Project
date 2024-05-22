@@ -34,8 +34,7 @@ ALTER TABLE hospitalization ADD UNIQUE (bill_bill_id);
 ALTER TABLE hospitalization ADD CONSTRAINT hospitalization_fk1 FOREIGN KEY (bill_bill_id) REFERENCES bill(bill_id);
 ALTER TABLE hospitalization ADD CONSTRAINT hospitalization_fk2 FOREIGN KEY (patient_service_user_user_id) REFERENCES patient(service_user_user_id);
 ALTER TABLE hospitalization ADD CONSTRAINT hospitalization_fk3 FOREIGN KEY (nurse_employee_contract_service_user_user_id) REFERENCES nurse(employee_contract_service_user_user_id);
-ALTER TABLE hospitalization ADD CONSTRAINT constraint_0 CHECK (--  'type' field only contains letters and spaces
-type~ '^[a-zA-Z ]+$');
+
 ALTER TABLE hospitalization ADD CONSTRAINT constraint_1 CHECK (-- start_date must be previous to end_date
 start_date >= end_date);
 ALTER TABLE medication ADD UNIQUE (med_name);
