@@ -64,6 +64,7 @@ CREATE TABLE hospitalization (
 	hosp_id					 BIGSERIAL,
 	start_date					 TIMESTAMP NOT NULL,
 	end_date					 TIMESTAMP NOT NULL,
+	type					 VARCHAR(512) NOT NULL,
 	bill_bill_id				 BIGINT NOT NULL,
 	patient_service_user_user_id		 BIGINT NOT NULL,
 	nurse_employee_contract_service_user_user_id BIGINT NOT NULL,
@@ -126,8 +127,9 @@ CREATE TABLE enrolment_surgery (
 CREATE TABLE payment (
 	payment_id	 BIGSERIAL NOT NULL,
 	amount	 BIGINT NOT NULL,
-	payment_date TIMESTAMP NOT NULL,
-	bill_bill_id BIGINT,
+	payment_date	 TIMESTAMP NOT NULL,
+	payment_method VARCHAR(512) NOT NULL,
+	bill_bill_id	 BIGINT,
 	PRIMARY KEY(bill_bill_id)
 );
 
