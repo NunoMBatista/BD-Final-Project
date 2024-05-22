@@ -2,86 +2,8 @@ INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 14:32:23] "[31m[1mPOST /dbproj/surgery HTTP/1.1[0m" 401 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 14:33:37] "PUT /dbproj/user HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'French', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 14:33:49] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 14:34:01] "PUT /dbproj/user HTTP/1.1" 200 -
-ERROR:logger:Missing required fields: patient_id, doctor, nurses, date, type
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 14:34:03] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 14:35:14] "POST /dbproj/surgery HTTP/1.1" 200 -
 INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:37:33] "[31m[1mPOST /dbproj/appointment HTTP/1.1[0m" 401 -
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'Italian', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:37:42] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-DEBUG:logger:POST /dbproj/user - payload: {'email': 'asd@gmail.com', 'password': 'asdfg'}
-DEBUG:logger:POST /dbproj/user - user_id: 1, role: assistant
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:37:49] "PUT /dbproj/user HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:37:56] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'French', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:43:50] "POST /dbproj/register/assistant HTTP/1.1" 200 -
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type timestamp: "2023-01-01T00:11:00Z2 hours"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:43:54] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type timestamp: "2023-01-01T00:11:00Z2 hours"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:46:35] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type timestamp: "2023-01-01T00:11:00Z2 hours"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:49:13] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type timestamp: "2023-01-01T00:11:00Z2 hours"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:49:45] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: operator is not unique: unknown + unknown
-LINE 7: ...1, '2023-01-01T00:11:00Z', '2023-01-01T00:11:00Z' + '2 hours...
-                                                             ^
-HINT:  Could not choose a best candidate operator. You might need to add explicit type casts.
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:51:23] "POST /dbproj/surgery HTTP/1.1" 200 -
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:logger:Starting HMS server on http://127.0.0.1:8080
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:8080
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:logger:POST /dbproj/surgery/None - error: invalid input syntax for type interval: "2023-01-01T00:11:00Z"
-LINE 7: ...                VALUES(1, '2023-01-01T00:11:00Z', '2023-01-0...
-                                                             ^
-
-INFO:werkzeug:127.0.0.1 - - [22/May/2024 18:53:38] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/May/2024 17:48:06] "[33mPUT /departments/69 HTTP/1.1[0m" 404 -
