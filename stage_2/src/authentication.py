@@ -45,15 +45,9 @@ def authenticate_user():
                 'errors': 'User not found'
             }
             return flask.jsonify(response)
-        #print("ok1")
-        
+                
         user_id = query_return[0]
         stored_password = query_return[1]
-
-        print("asf")
-
-        #hash_password(payload['password'])
-        print("ok")
 
         # Verify the password against the stored hash
         if not verify_password(stored_password, payload['password']):
@@ -64,6 +58,7 @@ def authenticate_user():
                 'errors': 'Invalid password'
             }
             return flask.jsonify(response)
+        
 
         # Determine the user's role
         role = None 
