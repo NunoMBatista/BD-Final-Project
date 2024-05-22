@@ -69,10 +69,12 @@ def authenticate_user_endpoint():
 def schedule_appointment_endpoint():
     return schedule_appointment()
 
+@app.route('/dbproj/surgery', methods=['POST'])
 @app.route('/dbproj/surgery/<int:hospitalization_id>', methods=['POST'])
 @jwt_required()
 @role_required('assistant')
-def schedule_surgery_endpoint(hospitalization_id):
+def schedule_surgery_endpoint(hospitalization_id=None):
+    print(hospitalization_id)
     return schedule_surgery(hospitalization_id)
 
 @app.route('/dbproj/bills/<int:bill_id>', methods=['POST'])
@@ -96,11 +98,11 @@ if __name__ == '__main__':
     logger.addHandler(ch)
     
     # Run table creation script
-    run_sql_script('queries/drop_tables.sql')
-    run_sql_script('queries/tables_creation.sql')
-    run_sql_script('queries/tables_constraints.sql')
-    run_sql_script('queries/populate_tables.sql')
-    run_sql_script('queries/create_bill_trigger.sql')
+    # run_sql_script('queries/drop_tables.sql')
+    # run_sql_script('queries/tables_creation.sql')
+    # run_sql_script('queries/tables_constraints.sql')
+    # run_sql_script('queries/populate_tables.sql')
+    # run_sql_script('queries/create_bill_trigger.sql')
         
     
     # Start the server

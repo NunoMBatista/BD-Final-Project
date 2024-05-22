@@ -36,7 +36,7 @@ ALTER TABLE hospitalization ADD CONSTRAINT hospitalization_fk2 FOREIGN KEY (pati
 ALTER TABLE hospitalization ADD CONSTRAINT hospitalization_fk3 FOREIGN KEY (nurse_employee_contract_service_user_user_id) REFERENCES nurse(employee_contract_service_user_user_id);
 
 ALTER TABLE hospitalization ADD CONSTRAINT constraint_1 CHECK (-- start_date must be previous to end_date
-start_date >= end_date);
+end_date >= start_date);
 ALTER TABLE medication ADD UNIQUE (med_name);
 ALTER TABLE medication ADD CONSTRAINT constraint_0 CHECK (--  'med_name' field only contains letters and spaces
 med_name ~ '^[a-zA-Z ]+$');
@@ -44,16 +44,16 @@ ALTER TABLE side_effect ADD UNIQUE (symptom);
 ALTER TABLE side_effect ADD CONSTRAINT constraint_0 CHECK (--  'symptom' field only contains letters and spaces
 symptom~ '^[a-zA-Z ]+$');
 ALTER TABLE bill ADD CONSTRAINT constraint_0 CHECK (-- '~cost' must be positive
-cost > 0);
+cost >= 0);
 ALTER TABLE specialization ADD UNIQUE (spec_name);
 ALTER TABLE specialization ADD CONSTRAINT constraint_0 CHECK (--  'spec_name' field only contains letters and spaces
 spec_name~ '^[a-zA-Z ]+$');
 ALTER TABLE effect_properties ADD CONSTRAINT effect_properties_fk1 FOREIGN KEY (side_effect_effect_id) REFERENCES side_effect(effect_id);
 ALTER TABLE effect_properties ADD CONSTRAINT effect_properties_fk2 FOREIGN KEY (medication_med_id) REFERENCES medication(med_id);
 ALTER TABLE effect_properties ADD CONSTRAINT constraint_0 CHECK (-- 'severity' must be positive
-severity> 0);
+severity > 0);
 ALTER TABLE effect_properties ADD CONSTRAINT constraint_1 CHECK (-- 'probability' must be between 0 and 1
-probability> 0 AND probability < 1);
+probability > 0 AND probability < 1);
 ALTER TABLE enrolment_appointment ADD CONSTRAINT enrolment_appointment_fk1 FOREIGN KEY (role_role_id) REFERENCES role(role_id);
 ALTER TABLE enrolment_appointment ADD CONSTRAINT enrolment_appointment_fk2 FOREIGN KEY (appointment_app_id) REFERENCES appointment(app_id);
 ALTER TABLE enrolment_appointment ADD CONSTRAINT enrolment_appointment_fk3 FOREIGN KEY (nurse_employee_contract_service_user_user_id) REFERENCES nurse(employee_contract_service_user_user_id);
@@ -69,7 +69,7 @@ ALTER TABLE dose ADD CONSTRAINT dose_fk2 FOREIGN KEY (prescription_presc_id) REF
 ALTER TABLE dose ADD CONSTRAINT constraint_0 CHECK (-- 'amount' must be positive
 amount > 0);
 ALTER TABLE dose ADD CONSTRAINT constraint_1 CHECK (-- 'duration' must be positive
-duration> 0);
+duration > 0);
 ALTER TABLE dose ADD CONSTRAINT constraint_2 CHECK (-- 'time_of_day' has the domain morning, afternoon or evening
 (time_of_day IN ('morning', 'afternoon', 'evening')));
 ALTER TABLE rank ADD UNIQUE (rank_name);
