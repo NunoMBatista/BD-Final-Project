@@ -27,7 +27,7 @@ from register_user import register_patient, register_assistant, register_nurse, 
 # Import the authentication function
 from authentication import authenticate_user, role_required
 # Import the scheduling function
-from scheduling import schedule_appointment
+from scheduling import schedule_appointment, schedule_surgery
 # Import the payment function
 from payment import pay_bill
 
@@ -69,11 +69,18 @@ def authenticate_user_endpoint():
 def schedule_appointment_endpoint():
     return schedule_appointment()
 
+@app.route('/dbproj/surgery/<int:hospitalization_id>', methods=['POST'])
+@jwt_required()
+@role_required('assistant')
+def schedule_surgery_endpoint(hospitalization_id):
+    return schedule_surgery(hospitalization_id)
+
 @app.route('/dbproj/bills/<int:bill_id>', methods=['POST'])
 @jwt_required()
 @role_required('patient')
 def pay_bill_endpoint(bill_id): #Isto leva argumentos?
     return pay_bill(bill_id) #Isto leva argumentos?
+
 
 
 if __name__ == '__main__':
