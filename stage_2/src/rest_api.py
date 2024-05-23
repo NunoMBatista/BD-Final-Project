@@ -34,7 +34,7 @@ from payment import pay_bill
 # Import the get appointments function
 from get_appointments import get_appointments
 # Import the prescription function
-from prescriptions import prescribe_medication
+from prescriptions import prescribe_medication, get_prescriptions
 
 app = flask.Flask(__name__)
 app.config.from_object(Config)
@@ -92,6 +92,12 @@ def schedule_surgery_endpoint(hospitalization_id=None):
 @role_required('doctor')
 def prescribe_medication_endpoint():
     return prescribe_medication()
+
+@app.route('/dbproj/prescriptions/<int:user_id>', methods=['GET'])
+@jwt_required()
+@role_required(['patient', 'doctor', 'nurse', 'assistant'])
+def get_prescriptions_endpoint(user_id):
+    return get_prescriptions(user_id)
 
 @app.route('/dbproj/bills/<int:bill_id>', methods=['POST'])
 @jwt_required()

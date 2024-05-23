@@ -222,8 +222,7 @@ def schedule_appointment():
             'status': StatusCodes['internal_error'],
             'errors': str(error)
         }
-
-        
+       
         cur.execute("ROLLBACK;")
         
     finally:

@@ -122,7 +122,10 @@ def register_patient():
         
     except(Exception, psycopg2.DatabaseError) as error:
         logger.error(f'POST /dbproj/register/patient - error: {error}')
-        response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
+        response = {
+            'status': StatusCodes['internal_error'], 
+            'errors': str(error)
+        }
         
         # Rollback the transaction
         cur.execute('ROLLBACK;')

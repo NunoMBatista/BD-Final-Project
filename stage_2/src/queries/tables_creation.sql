@@ -72,7 +72,7 @@ CREATE TABLE hospitalization (
 
 CREATE TABLE prescription (
 	presc_id	 BIGSERIAL,
-	presc_date TIMESTAMP NOT NULL,
+	validity	DATE NOT NULL,
 	PRIMARY KEY(presc_id)
 );
 
@@ -135,7 +135,6 @@ CREATE TABLE payment (
 CREATE TABLE dose (
 	amount		 INTEGER NOT NULL,
 	time_of_day		 VARCHAR(512),
-	duration		 SMALLINT NOT NULL,
 	medication_med_id	 BIGINT,
 	prescription_presc_id BIGINT,
 	PRIMARY KEY(time_of_day,medication_med_id,prescription_presc_id)

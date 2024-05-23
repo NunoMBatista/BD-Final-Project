@@ -69,3 +69,732 @@ INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:35:30] "[31m[1mPOST /dbproj/prescription HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'French', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:35:53] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'docone@gmail.com', 'password': 'docone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: doctor
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:35:59] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:36:02] "[31m[1mPOST /dbproj/prescription HTTP/1.1[0m" 415 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:36:05] "[31m[1mPOST /dbproj/prescription HTTP/1.1[0m" 415 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': 'fate', 'medicines': [{'medicine': 'asd', 'posology_dose': 123, 'posology_time_of_day': 'morn'}]}
+ERROR:logger:POST /dbproj/prescriptions - syntax error at or near "RETURUNING"
+LINE 4:                     RETURUNING presc_id
+                            ^
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 48, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.SyntaxError: syntax error at or near "RETURUNING"
+LINE 4:                     RETURUNING presc_id
+                            ^
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 84, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 96, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:37:37] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': 'fate', 'medicines': [{'medicine': 'asd', 'posology_dose': 123, 'posology_time_of_day': 'morn'}]}
+ERROR:logger:POST /dbproj/prescriptions - invalid input syntax for type date: "fate"
+LINE 3:                     VALUES ('fate')
+                                    ^
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 48, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.InvalidDatetimeFormat: invalid input syntax for type date: "fate"
+LINE 3:                     VALUES ('fate')
+                                    ^
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 84, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 96, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:38:33] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014', 'medicines': [{'medicine': 'asd', 'posology_dose': 123, 'posology_time_of_day': 'morn'}]}
+ERROR:logger:POST /dbproj/prescriptions - invalid input syntax for type date: "2014"
+LINE 3:                     VALUES ('2014')
+                                    ^
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 48, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.InvalidDatetimeFormat: invalid input syntax for type date: "2014"
+LINE 3:                     VALUES ('2014')
+                                    ^
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 84, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 97, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:39:32] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'asd', 'posology_dose': 123, 'posology_time_of_day': 'morn'}]}
+ERROR:logger:POST /dbproj/prescriptions - column "name" does not exist
+LINE 4:                         FROM medication WHERE name = 'asd'
+                                                      ^
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 57, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.UndefinedColumn: column "name" does not exist
+LINE 4:                         FROM medication WHERE name = 'asd'
+                                                      ^
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 84, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 97, in prescribe_medication
+    'errors': None,
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:40:22] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_time_of_day': 'morn'}]}
+ERROR:logger:POST /dbproj/prescriptions - column "name" does not exist
+LINE 4:                         FROM medication WHERE name = 'Aspiri...
+                                                      ^
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 57, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.UndefinedColumn: column "name" does not exist
+LINE 4:                         FROM medication WHERE name = 'Aspiri...
+                                                      ^
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 84, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 97, in prescribe_medication
+    'errors': None,
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:40:35] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_time_of_day': 'morn'}]}
+ERROR:logger:POST /dbproj/prescriptions - new row for relation "dose" violates check constraint "constraint_2"
+DETAIL:  Failing row contains (123, morn, 3, 3).
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 57, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.CheckViolation: new row for relation "dose" violates check constraint "constraint_2"
+DETAIL:  Failing row contains (123, morn, 3, 3).
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 84, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 96, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:40:59] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:44:54] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:45:58] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:46:07] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'o', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 96, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:46:37] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 64, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.ForeignKeyViolation: insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 84, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 96, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:47:17] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 65, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.ForeignKeyViolation: insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 86, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 98, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:48:18] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 65, in prescribe_medication
+    cur.execute("""
+psycopg2.errors.ForeignKeyViolation: insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 86, in prescribe_medication
+    'status': StatusCodes['internal_server_error'],
+KeyError: 'internal_server_error'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 99, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:48:32] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 98, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:49:17] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 109, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:51:02] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 101, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:51:34] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 101, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:51:49] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 102, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:52:03] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+ERROR:rest_api:Exception on /dbproj/prescription [POST]
+Traceback (most recent call last):
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/nuno/.local/lib/python3.10/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in prescribe_medication_endpoint
+    return prescribe_medication()
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/prescriptions.py", line 102, in prescribe_medication
+    'status': StatusCodes['created'],
+KeyError: 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:52:16] "[35m[1mPOST /dbproj/prescription HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:53:17] "POST /dbproj/prescription HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: patient, actual: doctor
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:53:33] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: patient, actual: doctor
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:53:37] "POST /dbproj/appointment HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'French', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:53:44] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:53:54] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: insert or update on table "appointment" violates foreign key constraint "appointment_fk4"
+DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(1) is not present in table "doctor".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:53:58] "POST /dbproj/appointment HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'German', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:54:31] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:54:33] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: insert or update on table "appointment" violates foreign key constraint "appointment_fk4"
+DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(1) is not present in table "doctor".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:54:42] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:54:45] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: doctor, actual: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:54:49] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'docone@gmail.com', 'password': 'docone'}
+DEBUG:logger:POST /dbproj/user - user_id: 2, role: doctor
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:54:57] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(1) is not present in table "appointment".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:55:02] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'apintment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:55:20] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:55:23] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:55:29] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:55:55] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'hospitalization', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "hospitalization_prescription" violates foreign key constraint "hospitalization_prescription_fk1"
+DETAIL:  Key (hospitalization_hosp_id)=(3) is not present in table "hospitalization".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:56:00] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:56:04] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:56:25] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:56:50] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:57:02] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+ERROR:logger:POST /dbproj/prescriptions - 'created'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:57:32] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 12:57:50] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:01:38] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointmet', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:01:48] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appoinfment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:01:59] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointfent', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:02:10] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointfent', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:02:15] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:02:43] "[31m[1mPOST /dbproj/prescription HTTP/1.1[0m" 400 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointfent', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}, {'medicine': 'Quetiapine', 'posology_dose': 234, 'posology_frequency': 'fd'}]}
+ERROR:logger:POST /dbproj/prescriptions - new row for relation "dose" violates check constraint "time_of_day_constraint"
+DETAIL:  Failing row contains (234, fd, 6, 29).
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:02:46] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointfent', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}, {'medicine': 'Quetiapine', 'posology_dose': 234, 'posology_frequency': 'Afternoon'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:02:55] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}, {'medicine': 'Quetiapine', 'posology_dose': 234, 'posology_frequency': 'Afternoon'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:03:03] "POST /dbproj/prescription HTTP/1.1" 200 -

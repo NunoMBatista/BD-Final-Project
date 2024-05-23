@@ -68,10 +68,8 @@ ALTER TABLE dose ADD CONSTRAINT dose_fk1 FOREIGN KEY (medication_med_id) REFEREN
 ALTER TABLE dose ADD CONSTRAINT dose_fk2 FOREIGN KEY (prescription_presc_id) REFERENCES prescription(presc_id);
 ALTER TABLE dose ADD CONSTRAINT constraint_0 CHECK (-- 'amount' must be positive
 amount > 0);
-ALTER TABLE dose ADD CONSTRAINT constraint_1 CHECK (-- 'duration' must be positive
-duration > 0);
-ALTER TABLE dose ADD CONSTRAINT constraint_2 CHECK (-- 'time_of_day' has the domain morning, afternoon or evening
-(time_of_day IN ('morning', 'afternoon', 'evening')));
+ALTER TABLE dose ADD CONSTRAINT time_of_day_constraint CHECK (-- 'time_of_day' has the domain morning, afternoon or evening
+(LOWER(time_of_day) IN ('morning', 'afternoon', 'evening')));
 ALTER TABLE rank ADD UNIQUE (rank_name);
 ALTER TABLE rank ADD CONSTRAINT constraint_0 CHECK (--  'rank_name' field only contains letters and spaces
 rank_name ~ '^[a-zA-Z ]+$');
