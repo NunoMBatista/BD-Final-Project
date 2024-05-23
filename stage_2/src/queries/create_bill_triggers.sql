@@ -75,3 +75,5 @@ AFTER INSERT ON surgery
 FOR EACH ROW
 EXECUTE FUNCTION update_surg_bill_trigger();
 
+
+

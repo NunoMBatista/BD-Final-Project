@@ -120,11 +120,11 @@ if __name__ == '__main__':
     logger.addHandler(ch)
     
     # Run table creation script
-    run_sql_script('queries/drop_tables.sql')
-    run_sql_script('queries/tables_creation.sql')
-    run_sql_script('queries/tables_constraints.sql')
-    run_sql_script('queries/populate_tables.sql')
-    run_sql_script('queries/create_bill_trigger.sql')
+    # run_sql_script('queries/drop_tables.sql')
+    # run_sql_script('queries/tables_creation.sql')
+    # run_sql_script('queries/tables_constraints.sql')
+    # run_sql_script('queries/populate_tables.sql')
+    # run_sql_script('queries/create_bill_triggers.sql')
         
     
     # Start the server
