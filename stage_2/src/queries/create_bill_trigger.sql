@@ -3,8 +3,8 @@ CREATE OR REPLACE FUNCTION create_app_bill_trigger()
 RETURNS TRIGGER AS $$
 BEGIN
     -- Insert a new bill with default values
-    INSERT INTO bill (cost, is_payed) 
-    VALUES (50, FALSE) RETURNING bill_id 
+    INSERT INTO bill (total_cost, already_payed) 
+    VALUES (50, 0) RETURNING bill_id 
     INTO NEW.bill_bill_id;
 
     -- Update the appointment with the new bill id
@@ -30,8 +30,8 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Insert a new bill with default values
     -- Currently empty, as it will be updated by the surgery trigger
-    INSERT INTO bill (cost, is_payed) 
-    VALUES (0, TRUE) RETURNING bill_id 
+    INSERT INTO bill (total_cost, already_payed) 
+    VALUES (0, 0) RETURNING bill_id 
     INTO NEW.bill_bill_id;
 
     -- Update the hospitalization with the new bill id
@@ -58,8 +58,7 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Update associated bill with surgery cost
     UPDATE bill
-    SET cost = cost + 100, 
-        is_payed = FALSE
+    SET total_cost = total_cost + 100
     WHERE bill_id = (
         SELECT bill_bill_id
         FROM hospitalization

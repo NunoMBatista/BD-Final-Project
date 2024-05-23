@@ -8,7 +8,9 @@ from flask_jwt_extended import get_jwt_identity
 
 from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION
 
-def pay_bill(bill_bill_id): #Isto leva argumentos? Deve levar bill_id
+def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
+    commit_success = False
+    
     # Get the request payload
     payload = flask.request.get_json()
         
@@ -19,7 +21,7 @@ def pay_bill(bill_bill_id): #Isto leva argumentos? Deve levar bill_id
     conn = db_connection()
     cur = conn.cursor()
     
-    missing_keys = check_required_fields(payload, ['payment_id', 'amount','payment_date', 'payment_method'])
+    missing_keys = check_required_fields(payload, ['amount', 'payment_method'])
     if (len(missing_keys) > 0):
         response = {
             'status': StatusCodes['bad_request'],
@@ -28,16 +30,21 @@ def pay_bill(bill_bill_id): #Isto leva argumentos? Deve levar bill_id
         return flask.jsonify(response)
     
     # Get the payload values
-    payment_id = payload['payment_id']
     amount = payload['amount']
-    payment_date = payload['payment_date']
     payment_method = payload['payment_method']
     
     
     # Check if the bill is associated with the user
-    cur.execute("SELECT patient_service_user_user_id FROM appointment WHERE bill_bill_id = %s UNION SELECT patient_service_user_user_id FROM hospitalization WHERE bill_bill_id = %s", (bill_bill_id, bill_bill_id))
+    cur.execute("""
+                SELECT patient_service_user_user_id 
+                FROM appointment 
+                WHERE bill_bill_id = %s 
+                UNION
+                SELECT patient_service_user_user_id 
+                FROM hospitalization 
+                WHERE bill_bill_id = %s
+                """, (bill_id, bill_id))
     result = cur.fetchone()
-
     if result is None or result[0] != user_id:
         response = {
             'status': StatusCodes['forbidden'],
@@ -50,19 +57,29 @@ def pay_bill(bill_bill_id): #Isto leva argumentos? Deve levar bill_id
         cur.execute('BEGIN;')
 
         # Process the payment
-        cur.execute("INSERT INTO payment (payment_id, amount, payment_date, payment_method, bill_bill_id) VALUES (%s, %s, %s, %s, %s)", 
-            (payment_id, amount, payment_date, payment_method, bill_bill_id))
+        cur.execute("""
+                    INSERT INTO payment (bill_bill, amount, payment_method) 
+                    VALUES (%s, %s, %s)
+                    """, (bill_id, amount, payment_method))
 
         # Update the cost in the bill and check if it's now 0
-        cur.execute("UPDATE bill SET cost = cost - %s WHERE bill_id = %s RETURNING cost", (amount, bill_bill_id))
+        cur.execute("""
+                    UPDATE bill 
+                    SET cost = cost - %s 
+                    WHERE bill_id = %s 
+                    RETURNING cost""", (amount, bill_id))
         new_cost = cur.fetchone()[0]
+
+
+        # METER TRIGGER
 
         if new_cost == 0:
             # If the new cost is 0, update the is_payed field to true
-            cur.execute("UPDATE bill SET is_payed = true WHERE bill_id = %s", (bill_bill_id,))
+            cur.execute("UPDATE bill SET already_payed = already_payed + %s WHERE bill_id = %s", (bill_id, amount))
 
         # Commit the transaction
         cur.execute('COMMIT;')
+        commit_success = True
 
         response = {
             'status': StatusCodes['success'], 
@@ -82,6 +99,9 @@ def pay_bill(bill_bill_id): #Isto leva argumentos? Deve levar bill_id
         cur.execute('ROLLBACK;')
     
     finally:
+        if not commit_success:
+            cur.execute('ROLLBACK;')
+        
         if conn is not None:
             conn.close()
         

@@ -264,7 +264,7 @@ def schedule_surgery(hospitalization_id):
     
     # At least one nurse is required for a surgery
     nurses = payload.get('nurses', [])
-    if check_nurse_fields(nurses) == False:
+    if check_nurse_fields(nurses) == False or len(nurses) == 0:
         response = {
             'status': StatusCodes['bad_request'],
             'errors': 'Nurses must have an id and a role'

@@ -798,3 +798,291 @@ DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointfent
 INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:02:55] "POST /dbproj/prescription HTTP/1.1" 200 -
 DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}, {'medicine': 'Quetiapine', 'posology_dose': 234, 'posology_frequency': 'Afternoon'}]}
 INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:03:03] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:40:26] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:40:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:40:35] "[31m[1mGET /dbproj/appointments/1 HTTP/1.1[0m" 401 -
+ERROR:rest_api:Exception on /dbproj/user [PUT]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 69, in authenticate_user_endpoint
+    return authenticate_user()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 17, in authenticate_user
+    conn = db_connection()
+           ^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 30, in db_connection
+    db = psycopg2.connect(
+         ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:40:39] "[35m[1mPUT /dbproj/user HTTP/1.1[0m" 500 -
+ERROR:rest_api:Exception on /dbproj/register/nurse [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 59, in register_nurse_endpoint
+    return register_nurse()
+           ^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/register_user.py", line 221, in register_nurse
+    conn = db_connection()
+           ^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 30, in db_connection
+    db = psycopg2.connect(
+         ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:40:47] "[35m[1mPOST /dbproj/register/nurse HTTP/1.1[0m" 500 -
+ERROR:rest_api:Exception on /dbproj/register/patient [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 49, in register_patient_endpoint
+    return register_patient()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/register_user.py", line 75, in register_patient
+    conn = db_connection()
+           ^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 30, in db_connection
+    db = psycopg2.connect(
+         ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:40:53] "[35m[1mPOST /dbproj/register/patient HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:rest_api:Exception on /dbproj/register/patient [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 49, in register_patient_endpoint
+    return register_patient()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/register_user.py", line 75, in register_patient
+    conn = db_connection()
+           ^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 30, in db_connection
+    db = psycopg2.connect(
+         ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:41:02] "[35m[1mPOST /dbproj/register/patient HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'Spanish', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:41:26] "POST /dbproj/register/patient HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:50:11] "[31m[1mGET /dbproj/appointments/1 HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asd', 'nationality': 'Spanish', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asd@gmail.com', 'password': 'asdfg', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:50:30] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'Italian', 'phone': '123456789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+ERROR:logger:POST /dbproj/register/assistant - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(123456789) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:50:43] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'German', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:50:49] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 4, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:51:01] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/4 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk1"
+DETAIL:  Key (hospitalization_hosp_id)=(4) is not present in table "hospitalization".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:52:04] "POST /dbproj/surgery/4 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'Italian', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:52:58] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'German', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:52:59] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Alice', 'nationality': 'Italian', 'phone': '838218895', 'birthday': '1980-01-01', 'email': 'nurse59@gmail.com', 'password': 'Password347', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:53:02] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Jane', 'nationality': 'French', 'phone': '264376520', 'birthday': '1980-01-01', 'email': 'nurse768@gmail.com', 'password': 'Password510', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:53:03] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:53:07] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'Spanish', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:53:10] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:53:13] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/4 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk1"
+DETAIL:  Key (hospitalization_hosp_id)=(4) is not present in table "hospitalization".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:53:26] "POST /dbproj/surgery/4 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk3"
+DETAIL:  Key (nurse_employee_contract_service_user_user_id)=(5) is not present in table "nurse".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:53:33] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/2 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk2"
+DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(3) is not present in table "doctor".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:54:13] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:54:26] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:57:14] "[33mPOST /dbproj/bills HTTP/1.1[0m" 404 -
+ERROR:logger:Insufficient permissions - required: patient, actual: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:57:18] "POST /dbproj/bills/5 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:57:44] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:57:46] "[31m[1mPOST /dbproj/bills/5 HTTP/1.1[0m" 415 -
+ERROR:logger:Missing required fields: payment_id, payment_date
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 13:58:34] "POST /dbproj/bills/5 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'Portuguese', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:07] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:12] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'Italian', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:15] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'Spanish', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(222222222) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:17] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'Italian', 'phone': '168244579', 'birthday': '1980-01-01', 'email': 'nurse287@gmail.com', 'password': 'Password115', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:19] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'Italian', 'phone': '349478789', 'birthday': '1980-01-01', 'email': 'nurse282@gmail.com', 'password': 'Password85', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:20] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:29] "POST /dbproj/appointment HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:44] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'French', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:48] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 6, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:08:51] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/None - error: column "cost" of relation "bill" does not exist
+LINE 1: INSERT INTO bill (cost, is_payed) 
+                          ^
+QUERY:  INSERT INTO bill (cost, is_payed) 
+    VALUES (0, 0) RETURNING bill_id
+CONTEXT:  PL/pgSQL function create_hosp_bill_trigger() line 5 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:09:09] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'Italian', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:16] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'German', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:19] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'Spanish', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:21] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'Portuguese', 'phone': '715212989', 'birthday': '1980-01-01', 'email': 'nurse465@gmail.com', 'password': 'Password381', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:25] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'Spanish', 'phone': '551470036', 'birthday': '1980-01-01', 'email': 'nurse125@gmail.com', 'password': 'Password883', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:25] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 2, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:30] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:45] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/2 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:10:58] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/2 - error: date/time field value out of range: "2023-01-01T024:11:00Z"
+LINE 4:                 (app_date BETWEEN '2023-01-01T024:11:00Z'::t...
+                                          ^
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:11:03] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/2 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk1"
+DETAIL:  Key (hospitalization_hosp_id)=(2) is not present in table "hospitalization".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:11:07] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:11:12] "POST /dbproj/surgery/1 HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: patient, actual: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:11:40] "POST /dbproj/bills/5 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:11:51] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:Missing required fields: payment_id, payment_date
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:11:54] "POST /dbproj/bills/5 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m

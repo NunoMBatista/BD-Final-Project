@@ -43,8 +43,13 @@ med_name ~ '^[a-zA-Z ]+$');
 ALTER TABLE side_effect ADD UNIQUE (symptom);
 ALTER TABLE side_effect ADD CONSTRAINT constraint_0 CHECK (--  'symptom' field only contains letters and spaces
 symptom~ '^[a-zA-Z ]+$');
-ALTER TABLE bill ADD CONSTRAINT cost_check CHECK (-- '~cost' must be positive
-cost >= 0);
+ALTER TABLE bill ADD CONSTRAINT total_cost_check CHECK (-- 'total_cost' must be positive
+total_cost >= 0);
+ALTER TABLE bill ADD CONSTRAINT already_payed_check CHECK (-- 'already_payed' must be positive
+already_payed >= 0);
+ALTER TABLE bill ADD CONSTRAINT excessive_payment CHECK (-- 'already_payed' must be less or equal to 'total_cost'
+already_payed <= total_cost);
+
 ALTER TABLE specialization ADD UNIQUE (spec_name);
 ALTER TABLE specialization ADD CONSTRAINT constraint_0 CHECK (--  'spec_name' field only contains letters and spaces
 spec_name~ '^[a-zA-Z ]+$');
