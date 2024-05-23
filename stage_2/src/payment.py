@@ -73,9 +73,9 @@ def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
 
         # METER TRIGGER
 
-        if new_cost == 0:
-            # If the new cost is 0, update the is_payed field to true
-            cur.execute("UPDATE bill SET already_payed = already_payed + %s WHERE bill_id = %s", (bill_id, amount))
+        # if new_cost == 0:
+        #     # If the new cost is 0, update the is_payed field to true
+        #     cur.execute("UPDATE bill SET already_payed = already_payed + %s WHERE bill_id = %s", (bill_id, amount))
 
         # Commit the transaction
         cur.execute('COMMIT;')

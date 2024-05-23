@@ -77,3 +77,22 @@ EXECUTE FUNCTION update_surg_bill_trigger();
 
 
 
+
+-- Define a payment trigger
+CREATE OR REPLACE FUNCTION update_bill_payment_trigger()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Update the bill with the new payment
+    UPDATE bill
+    SET already_payed = already_payed + NEW.payment
+    WHERE bill_id = NEW.bill_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Add the trigger to the payment table
+CREATE TRIGGER payment_after_insert
+AFTER INSERT ON payment
+FOR EACH ROW
+EXECUTE FUNCTION update_bill_payment_trigger();
