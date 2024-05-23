@@ -64,8 +64,8 @@ def execute_payment(bill_id): #Isto leva argumentos? Deve levar bill_id
 
         # Process the payment
         cur.execute("""
-                    INSERT INTO payment (bill_bill_id, amount, payment_method) 
-                    VALUES (%s, %s, %s)
+                    INSERT INTO payment (bill_bill_id, amount, payment_method, payment_date) 
+                    VALUES (%s, %s, %s, NOW())
                     """, (bill_id, amount, payment_method))
 
         """

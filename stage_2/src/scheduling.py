@@ -286,7 +286,19 @@ def schedule_surgery(hospitalization_id):
         # If hospitalization_id is not provided, create a new hospitalization
         if hospitalization_id is None:
             hospitalization_id = insert_hospitalization(cur, patient_id, date, nurses[0]['nurse_id'])
-        
+        else:
+            # Check if the hospitalization exists
+            cur.execute("""
+                        SELECT * FROM hospitalization
+                        WHERE hosp_id = %s AND patient_service_user_user_id = %s
+                        """, (hospitalization_id, patient_id))
+            if cur.fetchone() is None:
+                response = {
+                    'status': StatusCodes['bad_request'],
+                    'errors': 'Hospitalization not found for that patient'
+                }
+                return flask.jsonify(response)            
+            
         # Insert the surgery
         surgery_id = insert_surgery(cur, date, doctor_id, hospitalization_id, payload['type'])
                

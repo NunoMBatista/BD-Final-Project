@@ -1569,3 +1569,300 @@ INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:49:32] "POST /dbproj/prescription HT
 DEBUG:logger:GET /dbproj/prescriptions/1
 INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:49:41] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:59:13] "[33mGET /dbproj/top3 HTTP/1.1[0m" 404 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:40:04] "[31m[1mGET /dbproj/top3 HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:40:28] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'Italian', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:40:33] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 3, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:40:37] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:rest_api:Exception on /dbproj/top3 [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 112, in top3_endpoint
+    return top3()
+           ^^^^
+NameError: name 'top3' is not defined
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:40:41] "[35m[1mGET /dbproj/top3 HTTP/1.1[0m" 500 -
+ERROR:rest_api:Exception on /dbproj/top3 [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 112, in top3_endpoint
+    return top3()
+           ^^^^
+NameError: name 'top3' is not defined
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:40:47] "[35m[1mGET /dbproj/top3 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:41:19] "GET /dbproj/top3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:41:57] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'pattwo', 'nationality': 'Italian', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'pattone@gmail.com', 'password': 'pattwo'}
+ERROR:logger:POST /dbproj/register/patient - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(111111111) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:42:19] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'pattwo', 'nationality': 'Portuguese', 'phone': '111711111', 'birthday': '1980-01-01', 'email': 'pattone@gmail.com', 'password': 'pattwo'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:42:25] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:42:28] "GET /dbproj/top3 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/1 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk1"
+DETAIL:  Key (hospitalization_hosp_id)=(1) is not present in table "hospitalization".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:43:00] "POST /dbproj/surgery/1 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk3"
+DETAIL:  Key (nurse_employee_contract_service_user_user_id)=(3) is not present in table "nurse".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:43:08] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'German', 'phone': '250161281', 'birthday': '1980-01-01', 'email': 'nurse22@gmail.com', 'password': 'Password589', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:43:21] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Charlie', 'nationality': 'Portuguese', 'phone': '156865496', 'birthday': '1980-01-01', 'email': 'nurse929@gmail.com', 'password': 'Password323', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:43:22] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:44:00] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:44:08] "GET /dbproj/top3 HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: patient, actual: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:44:24] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'pattwo@gmail.com', 'password': 'pattwo'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:44:39] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'pattwo'}
+ERROR:logger:Invalid password was provided
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:44:56] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:45:04] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'pattone@gmail.com', 'password': 'patwo'}
+ERROR:logger:Invalid password was provided
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:45:25] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'pattone@gmail.com', 'password': 'pattwo'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:45:29] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/3 - payload: {'amount': 1, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:45:33] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: assistant, actual: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:45:42] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 3, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:45:51] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:45:54] "GET /dbproj/top3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:46:57] "GET /dbproj/top3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/top3
+ERROR:logger:GET /dbproj/top3 syntax error at or near "ORDER"
+LINE 25: ORDER BY tp.total_paid DESC;
+         ^
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:49:13] "GET /dbproj/top3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 18:49:27] "GET /dbproj/top3 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/2 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:03:01] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:03:06] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:logger:POST /dbproj/surgery/2 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:05:49] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:05:53] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:05:58] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'pattwo', 'nationality': 'French', 'phone': '111711111', 'birthday': '1980-01-01', 'email': 'pattone@gmail.com', 'password': 'pattwo'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:18:31] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'Spanish', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:20:59] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:05] "[31m[1mPOST /dbproj/appointment HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:13] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patoneREAL', 'nationality': 'Spanish', 'phone': '111711111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+ERROR:logger:POST /dbproj/register/patient - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(111711111) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:29] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patoneREAL', 'nationality': 'Spanish', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:36] "POST /dbproj/register/patient HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:41] "[31m[1mPOST /dbproj/appointment HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 4, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:43] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:47] "POST /dbproj/appointment HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/3 - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/3 - error: Bill does not belong to the patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:21:54] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/1 - payload: {'amount': 1, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:22:05] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:logger:Insufficient permissions - required: assistant, actual: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:31:39] "GET /dbproj/daily/2024-05-23 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'German', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:31:44] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:31:54] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /daily_summary/2024-05-23
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:31:58] "GET /dbproj/daily/2024-05-23 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:15] "POST /dbproj/surgery/2 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk2"
+DETAIL:  Key (patient_service_user_user_id)=(5) is not present in table "patient".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:19] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk3"
+DETAIL:  Key (nurse_employee_contract_service_user_user_id)=(6) is not present in table "nurse".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:24] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:39] "[31m[1mPOST /dbproj/surgery HTTP/1.1[0m" 400 -
+ERROR:logger:Missing required fields: nurses
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:43] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:51] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Bob', 'nationality': 'French', 'phone': '102001470', 'birthday': '1980-01-01', 'email': 'nurse294@gmail.com', 'password': 'Password203', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:59] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'Italian', 'phone': '251239803', 'birthday': '1980-01-01', 'email': 'nurse555@gmail.com', 'password': 'Password95', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:32:59] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:33:03] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:GET /daily_summary/2023-02-01
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:33:24] "GET /dbproj/daily/2023-02-01 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 4, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:36:09] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/1 - payload: {'amount': 4, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:36:47] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: assistant, actual: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:37:05] "GET /dbproj/daily/2023-23-05 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:37:14] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /daily_summary/2023-23-05
+ERROR:logger:GET /daily_summary/2023-23-05 - date/time field value out of range: "2023-23-05"
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:37:17] "GET /dbproj/daily/2023-23-05 HTTP/1.1" 200 -
+DEBUG:logger:GET /daily_summary/2023-05-23
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:37:25] "GET /dbproj/daily/2023-05-23 HTTP/1.1" 200 -
+DEBUG:logger:GET /daily_summary/2024-05-23
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:37:44] "GET /dbproj/daily/2024-05-23 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:46:55] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:47:05] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:rest_api:Exception on /dbproj/report [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 130, in monthly_report_endpoint
+    return monthly_report()
+           ^^^^^^^^^^^^^^^^
+TypeError: monthly_report() missing 1 required positional argument: 'date_str'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:47:08] "[35m[1mGET /dbproj/report HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:rest_api:Exception on /dbproj/report [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 130, in monthly_report_endpoint
+    return monthly_report()
+           ^^^^^^^^^^^^^^^^
+TypeError: monthly_report() missing 1 required positional argument: 'date_str'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:47:20] "[35m[1mGET /dbproj/report HTTP/1.1[0m" 500 -

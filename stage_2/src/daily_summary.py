@@ -9,9 +9,9 @@ from psycopg2.extras import RealDictCursor
 
 from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION
 
-def top3():
+def daily_summary(date_str):
     # Write to debug log
-    logger.debug(f'GET /dbproj/top3')
+    logger.debug(f'GET /daily_summary/{date_str}')
     
     # Connect to the database
     conn = db_connection()
@@ -20,21 +20,21 @@ def top3():
     try:
         cur.execute("BEGIN;")
         
-        with open('queries/top3.sql', 'r') as f:
+        with open('queries/daily_summary.sql', 'r') as f:
             query = f.read()
         
-        cur.execute(query)
+        cur.execute(query, (date_str, date_str, date_str))
         
-        top3_list = cur.fetchall()
+        summary = cur.fetchall()
         
         response = {
             'status': StatusCodes['success'],
             'errors': None,
-            'response': top3_list
+            'response': summary
         }
         
     except (Exception, psycopg2.DatabaseError) as error:
-        logger.error(f'GET /dbproj/top3 - {error}')
+        logger.error(f'GET /daily_summary/{date_str} - {error}')
         response = {
             'status': StatusCodes['internal_error'],
             'errors': str(error)

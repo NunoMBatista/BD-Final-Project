@@ -21,4 +21,5 @@ JOIN patient p ON tp.patient_id = p.service_user_user_id
 JOIN service_user su ON p.service_user_user_id = su.user_id
 LEFT JOIN appointment a ON tp.patient_id = a.patient_service_user_user_id
 LEFT JOIN hospitalization h ON tp.patient_id = h.patient_service_user_user_id
-GROUP BY su.name, tp.total_paid;
+GROUP BY su.name, tp.total_paid
+ORDER BY tp.total_paid DESC;

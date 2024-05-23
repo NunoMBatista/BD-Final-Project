@@ -35,6 +35,12 @@ from payment import execute_payment
 from get_appointments import get_appointments
 # Import the prescription function
 from prescriptions import prescribe_medication, get_prescriptions
+# Import the top3 function
+from top3 import top3
+# Import the daily summary function
+from daily_summary import daily_summary
+# Import the monthly report function
+from monthly_report import monthly_report
 
 app = flask.Flask(__name__)
 app.config.from_object(Config)
@@ -111,6 +117,17 @@ def execute_payment_endpoint(bill_id):
 def top3_endpoint():
     return top3()
 
+@app.route('/dbproj/daily/<date_str>', methods=['GET'])
+@jwt_required()
+@role_required('assistant')
+def daily_summary_endpoint(date_str):
+    return daily_summary(date_str)
+
+@app.route('/dbproj/report', methods=['GET'])
+@jwt_required()
+@role_required('assistant')
+def monthly_report_endpoint():
+    return monthly_report()
 
 if __name__ == '__main__':
     # Set up logging

@@ -126,6 +126,7 @@ CREATE TABLE enrolment_surgery (
 CREATE TABLE payment (
 	payment_id	 BIGSERIAL NOT NULL,
 	amount	 BIGINT NOT NULL,
+	payment_date	TIMESTAMP NOT NULL,
 	payment_method VARCHAR(512) NOT NULL,
 	bill_bill_id	 BIGINT,
 	PRIMARY KEY(payment_id, bill_bill_id)
