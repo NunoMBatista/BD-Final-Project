@@ -315,7 +315,3 @@ def schedule_surgery(hospitalization_id):
             cur.close()
                     
     return flask.jsonify(response)    
-        
-            
-        
-        

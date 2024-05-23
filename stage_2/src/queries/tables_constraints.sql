@@ -45,10 +45,10 @@ ALTER TABLE side_effect ADD CONSTRAINT constraint_0 CHECK (--  'symptom' field o
 symptom~ '^[a-zA-Z ]+$');
 ALTER TABLE bill ADD CONSTRAINT total_cost_check CHECK (-- 'total_cost' must be positive
 total_cost >= 0);
-ALTER TABLE bill ADD CONSTRAINT already_payed_check CHECK (-- 'already_payed' must be positive
-already_payed >= 0);
-ALTER TABLE bill ADD CONSTRAINT excessive_payment CHECK (-- 'already_payed' must be less or equal to 'total_cost'
-already_payed <= total_cost);
+ALTER TABLE bill ADD CONSTRAINT already_paid_check CHECK (-- 'already_paid' must be positive
+already_paid >= 0);
+ALTER TABLE bill ADD CONSTRAINT excessive_payment CHECK (-- 'already_paid' must be less or equal to 'total_cost'
+already_paid <= total_cost);
 
 ALTER TABLE specialization ADD UNIQUE (spec_name);
 ALTER TABLE specialization ADD CONSTRAINT constraint_0 CHECK (--  'spec_name' field only contains letters and spaces
@@ -67,7 +67,7 @@ ALTER TABLE enrolment_surgery ADD CONSTRAINT enrolment_surgery_fk2 FOREIGN KEY (
 ALTER TABLE enrolment_surgery ADD CONSTRAINT enrolment_surgery_fk3 FOREIGN KEY (nurse_employee_contract_service_user_user_id) REFERENCES nurse(employee_contract_service_user_user_id);
 ALTER TABLE payment ADD UNIQUE (payment_id);
 ALTER TABLE payment ADD CONSTRAINT payment_fk1 FOREIGN KEY (bill_bill_id) REFERENCES bill(bill_id);
-ALTER TABLE payment ADD CONSTRAINT constraint_0 CHECK (-- 'amount' must be positive
+ALTER TABLE payment ADD CONSTRAINT positive_payment CHECK (-- 'amount' must be positive
 amount > 0);
 ALTER TABLE dose ADD CONSTRAINT dose_fk1 FOREIGN KEY (medication_med_id) REFERENCES medication(med_id);
 ALTER TABLE dose ADD CONSTRAINT dose_fk2 FOREIGN KEY (prescription_presc_id) REFERENCES prescription(presc_id);

@@ -30,7 +30,7 @@ from authentication import authenticate_user, role_required
 # Import the scheduling function
 from scheduling import schedule_appointment, schedule_surgery
 # Import the payment function
-from payment import pay_bill
+from payment import execute_payment
 # Import the get appointments function
 from get_appointments import get_appointments
 # Import the prescription function
@@ -102,9 +102,14 @@ def get_prescriptions_endpoint(user_id):
 @app.route('/dbproj/bills/<int:bill_id>', methods=['POST'])
 @jwt_required()
 @role_required('patient')
-def pay_bill_endpoint(bill_id): 
-    return pay_bill(bill_id) 
+def execute_payment_endpoint(bill_id): 
+    return execute_payment(bill_id) 
 
+@app.route('/dbproj/top3', methods=['GET'])
+@jwt_required()
+@role_required('assistant')
+def top3_endpoint():
+    return top3()
 
 
 if __name__ == '__main__':
@@ -120,11 +125,11 @@ if __name__ == '__main__':
     logger.addHandler(ch)
     
     # Run table creation script
-    run_sql_script('queries/drop_tables.sql')
-    run_sql_script('queries/tables_creation.sql')
-    run_sql_script('queries/tables_constraints.sql')
-    run_sql_script('queries/populate_tables.sql')
-    run_sql_script('queries/create_bill_triggers.sql')
+    # run_sql_script('queries/drop_tables.sql')
+    # run_sql_script('queries/tables_creation.sql')
+    # run_sql_script('queries/tables_constraints.sql')
+    # run_sql_script('queries/populate_tables.sql')
+    # run_sql_script('queries/create_bill_triggers.sql')
         
     
     # Start the server

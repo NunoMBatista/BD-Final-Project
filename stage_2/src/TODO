@@ -13,3 +13,7 @@
 -> talvez meter check fields antes de db connect??
 
 -> continuar get prescriptions
+
+-> CHECK RESTRICTIONS IN THE QUERIES!
+
+-> concurrency issues top3

@@ -91,7 +91,7 @@ CREATE TABLE side_effect (
 CREATE TABLE bill (
 	bill_id	 BIGSERIAL,
 	total_cost	 BIGINT NOT NULL,
-	already_payed	 BIGINT NOT NULL,
+	already_paid	 BIGINT NOT NULL,
 	PRIMARY KEY(bill_id)
 );
 
@@ -128,7 +128,7 @@ CREATE TABLE payment (
 	amount	 BIGINT NOT NULL,
 	payment_method VARCHAR(512) NOT NULL,
 	bill_bill_id	 BIGINT,
-	PRIMARY KEY(bill_bill_id)
+	PRIMARY KEY(payment_id, bill_bill_id)
 );
 
 CREATE TABLE dose (

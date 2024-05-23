@@ -8,7 +8,7 @@ from flask_jwt_extended import get_jwt_identity
 
 from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION
 
-def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
+def execute_payment(bill_id): #Isto leva argumentos? Deve levar bill_id
     commit_success = False
     
     # Get the request payload
@@ -21,8 +21,12 @@ def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
     conn = db_connection()
     cur = conn.cursor()
     
+    # Write request to debug log
+    logger.debug(f'POST /dbproj/dbproj/bills/{bill_id} - payload: {payload}')
+    
     missing_keys = check_required_fields(payload, ['amount', 'payment_method'])
     if (len(missing_keys) > 0):
+        logger.error(f'POST /dbproj/dbproj/bills/{bill_id} - error: Missing required field(s): {", ".join(missing_keys)}')
         response = {
             'status': StatusCodes['bad_request'],
             'errors': f'Missing required field(s): {", ".join(missing_keys)}'
@@ -33,21 +37,23 @@ def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
     amount = payload['amount']
     payment_method = payload['payment_method']
     
-    
     # Check if the bill is associated with the user
     cur.execute("""
                 SELECT patient_service_user_user_id 
                 FROM appointment 
                 WHERE bill_bill_id = %s 
+                
                 UNION
+                
                 SELECT patient_service_user_user_id 
                 FROM hospitalization 
                 WHERE bill_bill_id = %s
                 """, (bill_id, bill_id))
     result = cur.fetchone()
     if result is None or result[0] != user_id:
+        logger.error(f'POST /dbproj/dbproj/bills/{bill_id} - error: Bill does not belong to the patient')
         response = {
-            'status': StatusCodes['forbidden'],
+            'status': StatusCodes['bad_request'],
             'errors': 'You can only pay your own bills.'
         }
         return flask.jsonify(response)
@@ -58,25 +64,23 @@ def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
 
         # Process the payment
         cur.execute("""
-                    INSERT INTO payment (bill_bill, amount, payment_method) 
+                    INSERT INTO payment (bill_bill_id, amount, payment_method) 
                     VALUES (%s, %s, %s)
                     """, (bill_id, amount, payment_method))
 
-        # Update the cost in the bill and check if it's now 0
+        """
+            A trigger will now take place to update the bill 
+            according to the payment made
+        """
+
+        # Get the remaining cost of the bill
         cur.execute("""
-                    UPDATE bill 
-                    SET cost = cost - %s 
-                    WHERE bill_id = %s 
-                    RETURNING cost""", (amount, bill_id))
-        new_cost = cur.fetchone()[0]
-
-
-        # METER TRIGGER
-
-        # if new_cost == 0:
-        #     # If the new cost is 0, update the is_payed field to true
-        #     cur.execute("UPDATE bill SET already_payed = already_payed + %s WHERE bill_id = %s", (bill_id, amount))
-
+                    SELECT (total_cost - already_paid) as remaining_cost  
+                    FROM bill 
+                    WHERE bill_id = %s
+                    """, (bill_id,))
+        remaining_cost = cur.fetchone()[0]
+        
         # Commit the transaction
         cur.execute('COMMIT;')
         commit_success = True
@@ -84,14 +88,14 @@ def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
         response = {
             'status': StatusCodes['success'], 
             'errors': None,                    
-            'results': f'user_id: {user_id}'}
+            'results': f'remaining: {remaining_cost}'}
         
     except(Exception, psycopg2.DatabaseError) as error:
-        if 'cost_check' in str(error):
-            logger.error(f'POST /dbproj/dbproj/bills/<int:bill_id> - error: {error}')
-            response = {'status': StatusCodes['bad_request'], 'errors': str(error)}
+        if 'excessive_payment' in str(error):
+            logger.error(f'POST /dbproj/dbproj/bills/{bill_id} - error: {error}')
+            response = {'status': StatusCodes['bad_request'], 'errors': 'you paid more than what you owe'}
         else:
-            logger.error(f'POST /dbproj/dbproj/bills/<int:bill_id> - error: {error}')
+            logger.error(f'POST /dbproj/dbproj/bills/{bill_id} - error: {error}')
             response = {'status': StatusCodes['internal_error'], 'errors': str(error)}
  
 
@@ -106,5 +110,4 @@ def pay_bill(bill_id): #Isto leva argumentos? Deve levar bill_id
             conn.close()
         
     return flask.jsonify(response)   
-    
     

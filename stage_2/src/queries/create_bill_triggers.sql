@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION create_app_bill_trigger()
 RETURNS TRIGGER AS $$
 BEGIN
     -- Insert a new bill with default values
-    INSERT INTO bill (total_cost, already_payed) 
+    INSERT INTO bill (total_cost, already_paid) 
     VALUES (50, 0) RETURNING bill_id 
     INTO NEW.bill_bill_id;
 
@@ -17,7 +17,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Add the trigger to the appointment table
-CREATE TRIGGER appointment_before_insert
+CREATE OR REPLACE TRIGGER appointment_before_insert
 BEFORE INSERT ON appointment
 FOR EACH ROW
 EXECUTE FUNCTION create_app_bill_trigger();
@@ -30,7 +30,7 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Insert a new bill with default values
     -- Currently empty, as it will be updated by the surgery trigger
-    INSERT INTO bill (total_cost, already_payed) 
+    INSERT INTO bill (total_cost, already_paid) 
     VALUES (0, 0) RETURNING bill_id 
     INTO NEW.bill_bill_id;
 
@@ -44,7 +44,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Add the trigger to the hospitalization table
-CREATE TRIGGER hospitalization_before_insert
+CREATE OR REPLACE TRIGGER hospitalization_before_insert
 BEFORE INSERT ON hospitalization
 FOR EACH ROW
 EXECUTE FUNCTION create_hosp_bill_trigger();
@@ -70,7 +70,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Add the trigger to the surgery table
-CREATE TRIGGER surgery_after_insert
+CREATE OR REPLACE TRIGGER surgery_after_insert
 AFTER INSERT ON surgery
 FOR EACH ROW
 EXECUTE FUNCTION update_surg_bill_trigger();
@@ -84,15 +84,15 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Update the bill with the new payment
     UPDATE bill
-    SET already_payed = already_payed + NEW.payment
-    WHERE bill_id = NEW.bill_id;
+    SET already_paid = bill.already_paid + NEW.amount
+    WHERE bill_id = NEW.bill_bill_id;
 
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 -- Add the trigger to the payment table
-CREATE TRIGGER payment_after_insert
+CREATE OR REPLACE TRIGGER payment_after_insert
 AFTER INSERT ON payment
 FOR EACH ROW
 EXECUTE FUNCTION update_bill_payment_trigger();

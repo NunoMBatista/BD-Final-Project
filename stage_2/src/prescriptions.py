@@ -109,6 +109,9 @@ def prescribe_medication():
         return flask.jsonify(response)
     
 def get_prescriptions(user_id):
+    # Write to debug log
+    logger.debug(f'GET /dbproj/prescriptions/{user_id}')
+    
     if (get_jwt_identity() != user_id) and (get_jwt()['role'] == 'patient'):
         response = {
             'status': StatusCodes['bad_request'],
@@ -120,4 +123,39 @@ def get_prescriptions(user_id):
     conn = db_connection()
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     
+    try:
+        # Get the prescriptions
+        cur.execute("""
+                    SELECT p.presc_id AS prescription_id, p.validity,
+                    json_agg(json_build_object('amount', d.amount, 'medicine', m.med_name, 'posology_frequency', d.time_of_day)) AS posology
+                    FROM prescription p
+                    JOIN dose d ON p.presc_id = d.prescription_presc_id
+                    JOIN medication m ON d.medication_med_id = m.med_id
+                    LEFT JOIN prescription_appointment pa ON p.presc_id = pa.prescription_presc_id
+                    LEFT JOIN appointment a ON pa.appointment_app_id = a.app_id
+                    LEFT JOIN hospitalization_prescription hp ON p.presc_id = hp.prescription_presc_id
+                    LEFT JOIN hospitalization h ON hp.hospitalization_hosp_id = h.hosp_id
+                    WHERE a.patient_service_user_user_id = %s OR h.patient_service_user_user_id = %s
+                    GROUP BY p.presc_id, p.validity
+                    """, (user_id, user_id))
     
+        prescriptions = cur.fetchall()
+        response = {
+            'status': StatusCodes['success'],
+            'errors': None,
+            'prescriptions': prescriptions
+        }
+        
+    except (Exception, psycopg2.DatabaseError) as error:
+        logger.error(error)
+        response = {
+            'status': StatusCodes['internal_error'],
+            'errors': str(error)
+        }
+        return flask.jsonify(response)
+        
+    
+    finally:
+        if conn is not None:
+            conn.close()
+        return flask.jsonify(response)

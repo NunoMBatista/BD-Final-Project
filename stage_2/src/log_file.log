@@ -1090,3 +1090,482 @@ INFO:logger:Starting HMS server on http://127.0.0.1:8080
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'French', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:23] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'Portuguese', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:27] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'John', 'nationality': 'Spanish', 'phone': '278270174', 'birthday': '1980-01-01', 'email': 'nurse71@gmail.com', 'password': 'Password209', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:28] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'Spanish', 'phone': '751952769', 'birthday': '1980-01-01', 'email': 'nurse936@gmail.com', 'password': 'Password665', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:29] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'French', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:31] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:34] "[31m[1mPOST /dbproj/surgery/1 HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'German', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+ERROR:logger:POST /dbproj/register/assistant - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(123451789) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:40] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 14:56:48] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/1 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk1"
+DETAIL:  Key (hospitalization_hosp_id)=(1) is not present in table "hospitalization".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:00:35] "POST /dbproj/surgery/1 HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk3"
+DETAIL:  Key (nurse_employee_contract_service_user_user_id)=(5) is not present in table "nurse".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:00:39] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/2 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk2"
+DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(3) is not present in table "doctor".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:01:01] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:01:04] "POST /dbproj/surgery HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:01:22] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:01:25] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:01:35] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:rest_api:Exception on /dbproj/bills/5 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 106, in pay_bill_endpoint
+    return pay_bill(bill_id)
+          ^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/payment.py", line 50, in pay_bill
+    'status': StatusCodes['forbidden'],
+              ~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'forbidden'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:02:10] "[35m[1mPOST /dbproj/bills/5 HTTP/1.1[0m" 500 -
+ERROR:rest_api:Exception on /dbproj/bills/5 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 106, in pay_bill_endpoint
+    return pay_bill(bill_id)
+          ^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/payment.py", line 50, in pay_bill
+    'status': StatusCodes['forbidden'],
+              ~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'forbidden'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:02:17] "[35m[1mPOST /dbproj/bills/5 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:rest_api:Exception on /dbproj/bills/5 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 137, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 106, in pay_bill_endpoint
+    return pay_bill(bill_id)
+          ^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/payment.py", line 53, in pay_bill
+    'status': StatusCodes['forbidden'],
+              ~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'forbidden'
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:03:16] "[35m[1mPOST /dbproj/bills/5 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:09:46] "POST /dbproj/bills/5 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/5 - error: Bill does not belong to the patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:11:35] "POST /dbproj/bills/5 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "bill_bill" of relation "payment" does not exist
+LINE 2:                     INSERT INTO payment (bill_bill, amount, ...
+                                                 ^
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:11:48] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: record "new" has no field "bill_id"
+CONTEXT:  SQL statement "UPDATE bill
+    SET already_payed = already_payed + NEW.payment
+    WHERE bill_id = NEW.bill_id"
+PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:15:24] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "bill_bill_id" does not exist
+LINE 3:     WHERE bill_bill_id = NEW.bill_bill_id
+                  ^
+QUERY:  UPDATE bill
+    SET already_payed = already_payed + NEW.payment
+    WHERE bill_bill_id = NEW.bill_bill_id
+CONTEXT:  PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:19:46] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: record "new" has no field "payment"
+CONTEXT:  SQL statement "UPDATE bill
+    SET already_payed = already_payed + NEW.payment
+    WHERE bill_id = NEW.bill_bill_id"
+PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:20:04] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "remaining_cost" does not exist
+LINE 2:                     SELECT remaining_cost 
+                                   ^
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:20:39] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "already_paid" does not exist
+LINE 2:                     SELECT (total_cost - already_paid) as re...
+                                                 ^
+HINT:  Perhaps you meant to reference the column "bill.already_payed".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:21:35] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "already_paid" does not exist
+LINE 2:                     SELECT (total_cost - already_paid) as re...
+                                                 ^
+HINT:  Perhaps you meant to reference the column "bill.already_payed".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:22:04] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column bill.already_paid does not exist
+LINE 2:                     SELECT (bill.total_cost - bill.already_p...
+                                                      ^
+HINT:  Perhaps you meant to reference the column "bill.already_payed".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:22:09] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "already_paid" does not exist
+LINE 2:     SET already_paid = already_paid + NEW.payment_id
+                               ^
+HINT:  Perhaps you meant to reference the column "bill.already_payed".
+QUERY:  UPDATE bill
+    SET already_paid = already_paid + NEW.payment_id
+    WHERE bill_id = NEW.bill_bill_id
+CONTEXT:  PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:23:08] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "already_paid" does not exist
+LINE 2:     SET already_paid = already_paid + NEW.amount
+                               ^
+HINT:  Perhaps you meant to reference the column "bill.already_payed".
+QUERY:  UPDATE bill
+    SET already_paid = already_paid + NEW.amount
+    WHERE bill_id = NEW.bill_bill_id
+CONTEXT:  PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:24:06] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:24:55] "GET / HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column bill.already_paid does not exist
+LINE 2:     SET bill.already_paid = bill.already_paid + NEW.amount
+                                    ^
+HINT:  Perhaps you meant to reference the column "bill.already_payed".
+QUERY:  UPDATE bill
+    SET bill.already_paid = bill.already_paid + NEW.amount
+    WHERE bill_id = NEW.bill_bill_id
+CONTEXT:  PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:24:59] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/3 - error: Bill does not belong to the patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:22] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'Portuguese', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:31] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'German', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:37] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Alice', 'nationality': 'Italian', 'phone': '614922325', 'birthday': '1980-01-01', 'email': 'nurse56@gmail.com', 'password': 'Password567', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:39] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/nurse - payload: {'name': 'Megan', 'nationality': 'Portuguese', 'phone': '789161743', 'birthday': '1980-01-01', 'email': 'nurse614@gmail.com', 'password': 'Password616', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '1'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:40] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/assistant - payload: {'name': 'asone', 'nationality': 'German', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'asone@gmail.com', 'password': 'asone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:42] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: assistant, actual: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:51] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:28:59] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/3 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk1"
+DETAIL:  Key (hospitalization_hosp_id)=(3) is not present in table "hospitalization".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:29:08] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:29:17] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/3 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:29:20] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:29:33] "POST /dbproj/surgery/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:29:37] "POST /dbproj/surgery/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patone@gmail.com', 'password': 'patone'}
+DEBUG:logger:POST /dbproj/user - user_id: 1, role: patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:30:28] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/3 - error: Bill does not belong to the patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:30:32] "POST /dbproj/bills/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: column "bill" of relation "bill" does not exist
+LINE 2:     SET bill.already_paid = bill.already_paid + NEW.amount
+                ^
+QUERY:  UPDATE bill
+    SET bill.already_paid = bill.already_paid + NEW.amount
+    WHERE bill_id = NEW.bill_bill_id
+CONTEXT:  PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:30:38] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:31:36] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/2 - error: Bill does not belong to the patient
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:31:41] "POST /dbproj/bills/2 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: duplicate key value violates unique constraint "payment_pkey"
+DETAIL:  Key (bill_bill_id)=(1) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:31:57] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patone', 'nationality': 'German', 'phone': '111111111', 'birthday': '1980-01-01', 'email': 'patone@gmail.com', 'password': 'patone'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:34:40] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'French', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:34:44] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:34:54] "POST /dbproj/appointment HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 1, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:35:07] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 50, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: new row for relation "bill" violates check constraint "excessive_payment"
+DETAIL:  Failing row contains (1, 50, 51).
+CONTEXT:  SQL statement "UPDATE bill
+    SET already_paid = bill.already_paid + NEW.amount
+    WHERE bill_id = NEW.bill_bill_id"
+PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:35:20] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 50, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: new row for relation "bill" violates check constraint "excessive_payment"
+DETAIL:  Failing row contains (1, 50, 51).
+CONTEXT:  SQL statement "UPDATE bill
+    SET already_paid = bill.already_paid + NEW.amount
+    WHERE bill_id = NEW.bill_bill_id"
+PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:36:13] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 20, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:36:22] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 29, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:36:27] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/<int:bill_id> - payload: {'amount': 0, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/<int:bill_id> - error: new row for relation "payment" violates check constraint "constraint_0"
+DETAIL:  Failing row contains (6, 0, mbway, 1).
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:36:30] "POST /dbproj/bills/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:58:12] "[33mGET /dbproj/2 HTTP/1.1[0m" 404 -
+DEBUG:logger:GET /dbproj/prescriptions/1
+ERROR:logger:missing FROM-clause entry for table "p"
+LINE 4:                     JOIN dose d ON p.presc_id = d.prescripti...
+                                           ^
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:58:23] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:59:01] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/prescriptions/2
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:59:09] "GET /dbproj/prescriptions/2 HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:59:13] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'docone@gmail.com', 'password': 'docone'}
+DEBUG:logger:POST /dbproj/user - user_id: 2, role: doctor
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 15:59:54] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 3, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}, {'medicine': 'Quetiapine', 'posology_dose': 234, 'posology_frequency': 'Afternoon'}]}
+ERROR:logger:POST /dbproj/prescriptions - insert or update on table "prescription_appointment" violates foreign key constraint "prescription_appointment_fk2"
+DETAIL:  Key (appointment_app_id)=(3) is not present in table "appointment".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:00:00] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Aspirin', 'posology_dose': 123, 'posology_frequency': 'Morning'}, {'medicine': 'Quetiapine', 'posology_dose': 234, 'posology_frequency': 'Afternoon'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:00:05] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:00:11] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:30:49] "[31m[1mGET /dbproj/prescriptions/1 HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'docone@gmail.com', 'password': 'docone'}
+DEBUG:logger:POST /dbproj/user - user_id: 2, role: doctor
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:30:58] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'docone@gmail.com', 'password': 'docone'}
+DEBUG:logger:POST /dbproj/user - user_id: 2, role: doctor
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:31:16] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/prescriptions/1
+ERROR:logger:column p.presc_ud does not exist
+LINE 11:                     GROUP BY p.presc_ud, p.validity
+                                      ^
+HINT:  Perhaps you meant to reference the column "p.presc_id".
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:31:19] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/prescriptions/1
+ERROR:logger:column "d.amount" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: ...SELECT p.presc_id AS prescription_id, p.validity, d.amount, ...
+                                                             ^
+
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:33:02] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:44:55] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:47:49] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:48:46] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:48:49] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:48:53] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Morphine', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:49:32] "POST /dbproj/prescription HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/prescriptions/1
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:49:41] "GET /dbproj/prescriptions/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/May/2024 16:59:13] "[33mGET /dbproj/top3 HTTP/1.1[0m" 404 -
