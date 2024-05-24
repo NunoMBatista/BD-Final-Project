@@ -20,7 +20,7 @@ def monthly_report():
     try:
         cur.execute("BEGIN;")
         
-        with open('queries/report.sql', 'r') as f:
+        with open('queries/monthly_report.sql', 'r') as f:
             query = f.read()
         
         cur.execute(query)

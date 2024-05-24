@@ -7,7 +7,7 @@ from datetime import datetime
 from flask_jwt_extended import get_jwt_identity
 from psycopg2.extras import RealDictCursor
 
-from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION
+from global_functions import db_connection, logger, StatusCodes
 
 def top3():
     # Write to debug log

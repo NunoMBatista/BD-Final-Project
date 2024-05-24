@@ -6,7 +6,7 @@ import jwt
 from datetime import datetime
 from flask_jwt_extended import get_jwt_identity
 
-from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION
+from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION, payload_contains_dangerous_chars
 
 # Check if all nurses have an id and a role
 def check_nurse_fields(nurses):
@@ -161,7 +161,13 @@ def insert_surgery(cur, date, doctor_id, hospitalization_id, type):
 def schedule_appointment():
     # Get the request payload
     payload = flask.request.get_json()
-        
+    if(payload_contains_dangerous_chars(payload)):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': 'Payload contains dangerous characters'
+        }
+        return flask.jsonify(response)
+         
     # Get the user ID from the JWT
     user_id = get_jwt_identity()
         
@@ -241,9 +247,17 @@ def schedule_appointment():
     Similarly to the appointment, an update lock is used when checking the doctor and nurse availability and
     the locks are always acquired in the same order 
 """
-def schedule_surgery(hospitalization_id):
+def schedule_surgery(hospitalization_id):    
     # Get the request payload
     payload = flask.request.get_json()
+    if(payload_contains_dangerous_chars(payload)):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': 'Payload contains dangerous characters'
+        }
+        return flask.jsonify(response)
+    
+    logger.debug(f'POST /dbproj/surgery/{hospitalization_id} - payload: {payload}')
     
     # Connect to the database
     conn = db_connection()
@@ -264,23 +278,23 @@ def schedule_surgery(hospitalization_id):
             'errors': f'Missing required field(s): {", ".join(missing_keys)}'
         }
         return flask.jsonify(response)
-
+    
     # Get the payload values
     patient_id = payload['patient_id']
     doctor_id = payload['doctor']
     date = payload['date']
-    
+         
     # At least one nurse is required for a surgery
-    if payload['nurses'] is not None:
+    nurses = []
+    if payload.get('nurses') is not None:
         nurses = payload.get('nurses', [])
-    
-    if check_nurse_fields(nurses) == False or len(nurses) == 0:
-        response = {
-            'status': StatusCodes['bad_request'],
-            'errors': 'Nurses must have an id and a role'
-        }
-        return flask.jsonify(response)
             
+        if check_nurse_fields(nurses) == False or len(nurses) == 0:
+            response = {
+                'status': StatusCodes['bad_request'],
+                'errors': 'Nurses must have an id and a role'
+            }
+            return flask.jsonify(response)    
 
     try:
         # Start the transaction

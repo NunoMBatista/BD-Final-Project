@@ -1,26 +1,27 @@
-WITH months AS (
-    SELECT generate_series(
-        -- Get each month from 11 months ago to the current month
-        date_trunc('month', CURRENT_DATE - INTERVAL '11 months'),
-        date_trunc('month', CURRENT_DATE),
-        '1 month'::interval -- Step by 1 month
-    ) AS month
+WITH months AS ( -- We need to generate a list of months to ensure we have a row for each month, even if there are no surgeries
+    SELECT TO_CHAR(date_trunc(
+                    'month', 
+                    -- Generate a series of dates from 1 year ago to now, with a step of 1 month and format it as 'YYYY Month'
+                    generate_series(NOW() - INTERVAL '11 months', NOW(), '1 month')), 'YYYY Month')    
+                    AS month
     ),
-doctor_surgeries AS (
-    SELECT 
-        date_trunc('month', surg_date) AS month, -- Get the month of the surgery
-        doctor_employee_contract_service_user_user_id AS doctor_id,  -- Get the doctor ID
-        COUNT(*) AS surgery_count -- Count the number of surgeries
+surgeries AS (
+    SELECT
+    TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY Month') AS month,
+    service_user.name,
+    COUNT(*) AS total_surgeries,
+    -- Rank the doctors by the number of surgeries they performed in each month
+    RANK() OVER (PARTITION BY TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY Month') ORDER BY COUNT(*) DESC) as rank
     FROM surgery
-    GROUP BY month, doctor_id -- Aggregate by month and doctor
+    JOIN service_user ON service_user.user_id = surgery.doctor_employee_contract_service_user_user_id
+    WHERE surgery.surg_date >= (NOW() - INTERVAL '1 year')
+    GROUP BY TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY Month'), service_user.name
     )
 
 SELECT 
     months.month, 
-    service_user.name AS doctor_name,
-    MAX(doctor_surgeries.surgery_count) AS surgery_count 
-FROM months -- Get all months
-LEFT JOIN doctor_surgeries ON months.month = doctor_surgeries.month -- Join the surgeries with the months 
-LEFT JOIN service_user ON doctor_surgeries.doctor_id = service_user.user_id -- Join the doctor ID with the doctor name
-GROUP BY months.month, service_user.name 
-ORDER BY months.month;
+    COALESCE(surgeries.name) AS name, -- If there are no surgeries, just don't show the doctor name
+    COALESCE(surgeries.total_surgeries, 0) AS total_surgeries 
+FROM months
+LEFT JOIN surgeries ON months.month = surgeries.month AND surgeries.rank = 1 -- Only show the doctor with the most surgeries in each month
+ORDER BY TO_DATE(months.month, 'YYYY Month') DESC;

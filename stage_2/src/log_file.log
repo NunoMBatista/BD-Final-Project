@@ -1866,3 +1866,617 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^
 TypeError: monthly_report() missing 1 required positional argument: 'date_str'
 INFO:werkzeug:127.0.0.1 - - [23/May/2024 19:47:20] "[35m[1mGET /dbproj/report HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:33:03] "[33mPOST /dbproj/surgery2 HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:33:07] "[31m[1mPOST /dbproj/surgery HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:33:09] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/surgery/None - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:33:10] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:logger:Missing required fields: nurses
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:34:03] "POST /dbproj/surgery HTTP/1.1" 200 -
+ERROR:rest_api:Exception on /dbproj/surgery/3 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 129, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in schedule_surgery_endpoint
+    return schedule_surgery(hospitalization_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/scheduling.py", line 274, in schedule_surgery
+    if payload['nurses'] is not None:
+       ~~~~~~~^^^^^^^^^^
+KeyError: 'nurses'
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:34:09] "[35m[1mPOST /dbproj/surgery/3 HTTP/1.1[0m" 500 -
+ERROR:rest_api:Exception on /dbproj/surgery/3 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 129, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in schedule_surgery_endpoint
+    return schedule_surgery(hospitalization_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/scheduling.py", line 274, in schedule_surgery
+    if payload['nurses'] is not None:
+       ~~~~~~~^^^^^^^^^^
+KeyError: 'nurses'
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:34:23] "[35m[1mPOST /dbproj/surgery/3 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:rest_api:Exception on /dbproj/surgery/3 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 129, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in schedule_surgery_endpoint
+    return schedule_surgery(hospitalization_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/scheduling.py", line 276, in schedule_surgery
+    if payload['nurses'] is not None:
+       ~~~~~~~^^^^^^^^^^
+KeyError: 'nurses'
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:35:10] "[35m[1mPOST /dbproj/surgery/3 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:rest_api:Exception on /dbproj/surgery/3 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 131, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in schedule_surgery_endpoint
+    return schedule_surgery(hospitalization_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/scheduling.py", line 276, in schedule_surgery
+    if payload['nurses'] is not None:
+       ~~~~~~~^^^^^^^^^^
+KeyError: 'nurses'
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:35:49] "[35m[1mPOST /dbproj/surgery/3 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:rest_api:Exception on /dbproj/surgery/3 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in schedule_surgery_endpoint
+    return schedule_surgery(hospitalization_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/scheduling.py", line 281, in schedule_surgery
+    if payload['nurses'] is not None:
+       ~~~~~~~^^^^^^^^^^
+KeyError: 'nurses'
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:36:28] "[35m[1mPOST /dbproj/surgery/3 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:rest_api:Exception on /dbproj/surgery/3 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in schedule_surgery_endpoint
+    return schedule_surgery(hospitalization_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/scheduling.py", line 278, in schedule_surgery
+    if payload['nurses'] is not None:
+       ~~~~~~~^^^^^^^^^^
+KeyError: 'nurses'
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:36:54] "[35m[1mPOST /dbproj/surgery/3 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:rest_api:Exception on /dbproj/surgery/3 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 94, in schedule_surgery_endpoint
+    return schedule_surgery(hospitalization_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/scheduling.py", line 283, in schedule_surgery
+    if check_nurse_fields(nurses) == False or len(nurses) == 0:
+                          ^^^^^^
+UnboundLocalError: cannot access local variable 'nurses' where it is not associated with a value
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:39:23] "[35m[1mPOST /dbproj/surgery/3 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:logger:POST /dbproj/surgery/3 - error: cannot access local variable 'nurses' where it is not associated with a value
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:39:47] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:logger:POST /dbproj/surgery/3 - error: cannot access local variable 'nurses' where it is not associated with a value
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:40:35] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+ERROR:logger:POST /dbproj/surgery/3 - error: 'NoneType' object is not iterable
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:40:38] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-01T014:11:00Z', 'type': 'divertida'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:40:51] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-11T014:11:00Z', 'type': 'divertida'}
+ERROR:logger:Missing required fields: nurses
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:41:01] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-11T014:11:00Z', 'type': 'divertida'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:41:06] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-01-11T014:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/3 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:43:22] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 2, 'date': '2023-11-11T014:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:43:26] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'docone', 'nationality': 'French', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Cambridge', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(222222222) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:44:15] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'dotwo', 'nationality': 'German', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'doctwo@gmail.com', 'password': 'doctwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(222222222) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:44:26] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/doctor - payload: {'name': 'dotwo', 'nationality': 'Italian', 'phone': '222221222', 'birthday': '1980-01-01', 'email': 'doctwo@gmail.com', 'password': 'doctwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:44:31] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:GET /report
+ERROR:logger:GET /report - [Errno 2] No such file or directory: 'queries/report.sql'
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:44:52] "GET /dbproj/report HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /report
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:45:23] "GET /dbproj/report HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-10-11T014:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:46:52] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-10-11T014:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/3 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:46:53] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-10-12T014:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:46:58] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-10-15T014:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:47:02] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:GET /report
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:47:18] "GET /dbproj/report HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-08-15T014:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:47:38] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-08-15T012:11:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/3 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:47:46] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-08-15T012:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:47:50] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 1, 'doctor': 10, 'date': '2023-08-15T017:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:47:54] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:GET /report
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:47:56] "GET /dbproj/report HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /report
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 16:58:56] "GET /dbproj/report HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:07:02] "[31m[1mGET /dbproj/report HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:07:09] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /report
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:07:11] "GET /dbproj/report HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /report
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:10:12] "GET /dbproj/report HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:21:51] "[31m[1mGET /dbproj/appointment HTTP/1.1[0m" 405 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:21:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:22:04] "[31m[1mGET /dbproj/top3 HTTP/1.1[0m" 401 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:22:12] "GET /dbproj/top3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:22:34] "[31m[1mGET /dbproj/user HTTP/1.1[0m" 405 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:22:57] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:23:00] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:23:03] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:23:10] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patoneREAL', 'nationality': 'French', 'phone': '111211111', 'birthday': '1980-01-01', 'email': 'pattwo@gmail.com', 'password': 'pattwo'}
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:25:02] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'pattwo', 'nationality': 'Portuguese', 'phone': '111211111', 'birthday': '1980-01-01', 'email': 'pattwo@gmail.com', 'password': 'pattwo'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:25:14] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patthree', 'nationality': 'Italian', 'phone': '111211111', 'birthday': '1980-01-01', 'email': 'patthree@gmail.com', 'password': 'patthree'}
+ERROR:logger:POST /dbproj/register/patient - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(111211111) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:25:26] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patthree', 'nationality': 'French', 'phone': '111311111', 'birthday': '1980-01-01', 'email': 'patthree@gmail.com', 'password': 'patthree'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:25:32] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:25:36] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'pattwo@gmail.com', 'password': 'pattwo'}
+DEBUG:logger:POST /dbproj/user - user_id: 11, role: patient
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:25:59] "PUT /dbproj/user HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:27:35] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:27:39] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:logger:POST /dbproj/appointment - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:27:45] "POST /dbproj/appointment HTTP/1.1" 200 -
+ERROR:rest_api:Exception on /dbproj/bills/6 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 135, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 112, in execute_payment_endpoint
+    return execute_payment(bill_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/payment.py", line 16, in execute_payment
+    if(payload_contains_dangerous_chars(payload)):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 109, in payload_contains_dangerous_chars
+    if string_contains_dangerous_chars(value):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 102, in string_contains_dangerous_chars
+    if char in input_str:
+       ^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'int' is not iterable
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:28:10] "[35m[1mPOST /dbproj/bills/6 HTTP/1.1[0m" 500 -
+ERROR:rest_api:Exception on /dbproj/bills/6 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 135, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 112, in execute_payment_endpoint
+    return execute_payment(bill_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/payment.py", line 16, in execute_payment
+    if(payload_contains_dangerous_chars(payload)):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 109, in payload_contains_dangerous_chars
+    if string_contains_dangerous_chars(value):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 102, in string_contains_dangerous_chars
+    if char in input_str:
+       ^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'int' is not iterable
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:28:23] "[35m[1mPOST /dbproj/bills/6 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:rest_api:Exception on /dbproj/bills/6 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 135, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 112, in execute_payment_endpoint
+    return execute_payment(bill_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/payment.py", line 20, in execute_payment
+    if(payload_contains_dangerous_chars(payload)):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 109, in payload_contains_dangerous_chars
+    if string_contains_dangerous_chars(value):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 102, in string_contains_dangerous_chars
+    if char in input_str:
+       ^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'int' is not iterable
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:30:23] "[35m[1mPOST /dbproj/bills/6 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:rest_api:Exception on /dbproj/bills/6 [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/authentication.py", line 135, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/rest_api.py", line 112, in execute_payment_endpoint
+    return execute_payment(bill_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/payment.py", line 18, in execute_payment
+    if(payload_contains_dangerous_chars(payload)):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 109, in payload_contains_dangerous_chars
+    if string_contains_dangerous_chars(value):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nuno/Desktop/LEI/2ºAno/2ºSemestre/BD/Projeto/BD-Final-Project/stage_2/src/global_functions.py", line 102, in string_contains_dangerous_chars
+    if char in input_str:
+       ^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'int' is not iterable
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:30:56] "[35m[1mPOST /dbproj/bills/6 HTTP/1.1[0m" 500 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/6 - payload: {'amount': 4, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:31:13] "POST /dbproj/bills/6 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/dbproj/bills/6 - payload: {'amount': 4, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:32:18] "POST /dbproj/bills/6 HTTP/1.1" 200 -
+ERROR:logger:Insufficient permissions - required: assistant, actual: patient
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:32:29] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:32:41] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:32:45] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 13, 'doctor': 10, 'date': '2023-08-15T017:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/3 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:33:36] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/3 - payload: {'patient_id': 13, 'doctor': 10, 'date': '2023-01-15T017:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:33:40] "POST /dbproj/surgery/3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 13, 'doctor': 10, 'date': '2023-01-15T017:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:33:45] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:33:58] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patthree@gmail.com', 'password': 'patthree'}
+DEBUG:logger:POST /dbproj/user - user_id: 13, role: patient
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:34:14] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/7 - payload: {'amount': 4, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:34:30] "POST /dbproj/bills/7 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patfour', 'nationality': 'German', 'phone': '111311111', 'birthday': '1980-01-01', 'email': 'patfour@gmail.com', 'password': 'patfour'}
+ERROR:logger:POST /dbproj/register/patient - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(111311111) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:34:56] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patfour@gmail.com', 'password': 'patfour'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:34:59] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/patient - payload: {'name': 'patfour', 'nationality': 'Italian', 'phone': '111311611', 'birthday': '1980-01-01', 'email': 'patfour@gmail.com', 'password': 'patfour'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:35:41] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patfour@gmail.com', 'password': 'patfour'}
+DEBUG:logger:POST /dbproj/user - user_id: 15, role: patient
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:35:44] "PUT /dbproj/user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:35:54] "POST /dbproj/appointment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:36:05] "POST /dbproj/bills/8 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/8 - payload: {'amount': 60, 'payment_method': 'mbway'}
+ERROR:logger:POST /dbproj/dbproj/bills/8 - error: new row for relation "bill" violates check constraint "excessive_payment"
+DETAIL:  Failing row contains (8, 50, 60).
+CONTEXT:  SQL statement "UPDATE bill
+    SET already_paid = bill.already_paid + NEW.amount
+    WHERE bill_id = NEW.bill_bill_id"
+PL/pgSQL function update_bill_payment_trigger() line 4 at SQL statement
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:36:08] "POST /dbproj/bills/8 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/8 - payload: {'amount': 50, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:36:12] "POST /dbproj/bills/8 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:36:36] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:36:43] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/5 - payload: {'patient_id': 13, 'doctor': 10, 'date': '2023-01-15T017:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/5 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:37:15] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/5 - payload: {'patient_id': 13, 'doctor': 10, 'date': '2023-01-15T020:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:37:24] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/5 - payload: {'patient_id': 13, 'doctor': 10, 'date': '2023-01-15T020:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/5 - error: Doctor is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:37:31] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/5 - payload: {'patient_id': 13, 'doctor': 10, 'date': '2013-01-15T020:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:37:38] "POST /dbproj/surgery/5 HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:37:41] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'patthree@gmail.com', 'password': 'patthree'}
+DEBUG:logger:POST /dbproj/user - user_id: 13, role: patient
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:38:21] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/7 - payload: {'amount': 50, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:38:26] "POST /dbproj/bills/7 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/dbproj/bills/7 - payload: {'amount': 50, 'payment_method': 'mbway'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:38:32] "POST /dbproj/bills/7 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'asone@gmail.com', 'password': 'asone'}
+DEBUG:logger:POST /dbproj/user - user_id: 5, role: assistant
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:38:39] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:38:42] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:38:47] "GET /dbproj/top3 HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 13, 'doctor': 10, 'date': '2011-01-15T020:10:00Z', 'type': 'divertida', 'nurses': [{'nurse_id': '6', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:43:15] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:GET /dbproj/top3
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:43:18] "GET /dbproj/top3 HTTP/1.1" 200 -

@@ -45,7 +45,7 @@ def run_sql_script(script):
     try:
         with open(script, 'r') as f:
             script_str = f.read()
-        cursor.execute(script_str)
+            cursor.execute(script_str)
         print(script + ' executed successfully')
         conn.commit()
     except Exception as e:
@@ -93,3 +93,22 @@ def check_required_fields(payload, required_keys):
     if len(missing_keys) > 0:
         logger.error(f'Missing required fields: {", ".join(missing_keys)}')
     return missing_keys
+
+# Search dangerous characters in a user input string
+def string_contains_dangerous_chars(input_str):
+    # Check for SQL injection characters
+    dangerous_chars = [';', '--', '/*', '*/'] 
+    for char in dangerous_chars:
+        if char in input_str:
+            return True
+    return False
+
+# Check if a payload contains dangerous characters
+def payload_contains_dangerous_chars(payload):
+    for key, value in payload.items():
+        # Ignore if it's not a string
+        if not isinstance(value, str):
+            continue
+        if string_contains_dangerous_chars(value):
+            return True
+    return False

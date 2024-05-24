@@ -6,7 +6,7 @@ import jwt
 from datetime import datetime
 from flask_jwt_extended import get_jwt_identity, get_jwt
 
-from global_functions import db_connection, logger, StatusCodes, check_required_fields
+from global_functions import db_connection, logger, StatusCodes, check_required_fields, payload_contains_dangerous_chars
 
 def check_medication_fields(medications):
     for medication in medications:
@@ -18,6 +18,12 @@ def prescribe_medication():
     commit_success = False
     # Get the payload data
     payload = flask.request.get_json()
+    if(payload_contains_dangerous_chars(payload)):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': 'Payload contains dangerous characters'
+        }
+        return flask.jsonify(response)
     
     logger.debug(f'POST /dbproj/register/service_user - payload: {payload}')
     

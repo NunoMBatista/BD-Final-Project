@@ -6,13 +6,22 @@ import jwt
 from datetime import datetime
 from flask_jwt_extended import get_jwt_identity
 
-from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION
+from global_functions import db_connection, logger, StatusCodes, check_required_fields, APPOINTMENT_DURATION, SURGERY_DURATION, payload_contains_dangerous_chars
 
 def execute_payment(bill_id): #Isto leva argumentos? Deve levar bill_id
     commit_success = False
-    
+        
     # Get the request payload
     payload = flask.request.get_json()
+    if(payload_contains_dangerous_chars(payload)):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': 'Payload contains dangerous characters'
+        }
+        return flask.jsonify(response)
+    
+    # Write request to debug log
+    logger.debug(f'POST /dbproj/dbproj/bills/{bill_id} - payload: {payload}')
         
     # Get the user ID from the JWT
     user_id = get_jwt_identity()
@@ -20,9 +29,6 @@ def execute_payment(bill_id): #Isto leva argumentos? Deve levar bill_id
     # Connect to the database
     conn = db_connection()
     cur = conn.cursor()
-    
-    # Write request to debug log
-    logger.debug(f'POST /dbproj/dbproj/bills/{bill_id} - payload: {payload}')
     
     missing_keys = check_required_fields(payload, ['amount', 'payment_method'])
     if (len(missing_keys) > 0):
@@ -109,5 +115,5 @@ def execute_payment(bill_id): #Isto leva argumentos? Deve levar bill_id
         if conn is not None:
             conn.close()
         
-    return flask.jsonify(response)   
+        return flask.jsonify(response)   
     

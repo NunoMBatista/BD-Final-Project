@@ -6,12 +6,19 @@ import datetime
 from flask_jwt_extended import create_access_token, get_jwt, set_access_cookies
 from functools import wraps
 
-from global_functions import db_connection, logger, StatusCodes, check_required_fields
+from global_functions import db_connection, logger, StatusCodes, check_required_fields, payload_contains_dangerous_chars
 from hashing import hash_password, verify_password
 
 # Authenticate a user and return an access token
 def authenticate_user():
     payload = flask.request.get_json()
+    if(payload_contains_dangerous_chars(payload)):
+        response = {
+            'status': StatusCodes['bad_request'],
+            'errors': 'Payload contains dangerous characters'
+        }
+        return flask.jsonify(response)
+    
     
     # Connect to the database
     conn = db_connection()
@@ -27,8 +34,7 @@ def authenticate_user():
             'status': StatusCodes['bad_request'],
             'errors': f'Missing required field(s): {", ".join(missing_keys)}'
         }
-        return flask.jsonify(response)
-        
+        return flask.jsonify(response)        
     
     try:
         # Query the database for the user_id
