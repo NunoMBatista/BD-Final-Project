@@ -248,8 +248,16 @@ def schedule_surgery(hospitalization_id):
     # Connect to the database
     conn = db_connection()
     cur = conn.cursor()
-                
-    missing_keys = check_required_fields(payload, ['patient_id', 'doctor', 'nurses', 'date', 'type'])
+    
+    """
+        Only if there is no hospitalization, at least one nurse is required (to be responsible for the hospitalization)
+        So, extra_required_key is set to a redundant value (patient_id) if hospitalization_id is not None 
+    """
+    extra_required_key = 'patient_id'
+    if hospitalization_id is None:
+        extra_required_key = 'nurses'
+    
+    missing_keys = check_required_fields(payload, ['patient_id', 'doctor', extra_required_key, 'date', 'type'])
     if (len(missing_keys) > 0):
         response = {
             'status': StatusCodes['bad_request'],
@@ -263,7 +271,9 @@ def schedule_surgery(hospitalization_id):
     date = payload['date']
     
     # At least one nurse is required for a surgery
-    nurses = payload.get('nurses', [])
+    if payload['nurses'] is not None:
+        nurses = payload.get('nurses', [])
+    
     if check_nurse_fields(nurses) == False or len(nurses) == 0:
         response = {
             'status': StatusCodes['bad_request'],

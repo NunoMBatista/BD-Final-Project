@@ -23,3 +23,5 @@
 -> COMMENT QUERIES
 
 -> Mencionar que assumimos que a validade começa na data da prescrição
+
+-> Talvez usar group by no doctor availability (unite surg + app)

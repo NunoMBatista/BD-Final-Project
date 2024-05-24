@@ -80,21 +80,13 @@ def authenticate_user():
                 role = table
                 break
             
-        # If the user has no role, return an error response
-        if role is None:
-            response = {
-                'status': StatusCodes['bad_request'],
-                'errors': 'User has no role'
-            }
-            return flask.jsonify(response)
-    
         logger.debug(f'POST /dbproj/user - user_id: {user_id}, role: {role}')
     
         # Generate an access token
         additional_claims = {'role': role}
         access_token = create_access_token(identity=user_id, additional_claims=additional_claims)
         
-        # Create a Flask Response object
+        # Create a Flask Response object in order to set the access token as a cookie
         response = flask.make_response(flask.jsonify({
             'status': StatusCodes['success'],
             'errors': None,
