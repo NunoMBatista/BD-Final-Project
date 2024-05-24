@@ -2480,3 +2480,119 @@ DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 13, 'doctor': 1
 INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:43:15] "POST /dbproj/surgery HTTP/1.1" 200 -
 DEBUG:logger:GET /dbproj/top3
 INFO:werkzeug:127.0.0.1 - - [24/May/2024 17:43:18] "GET /dbproj/top3 HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'patfour', 'nationality': 'Portuguese', 'phone': '111311611', 'birthday': '1980-01-01', 'email': 'patfour@gmail.com', 'password': 'patfour'}
+ERROR:logger:POST /dbproj/register/patient - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(111311611) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:20:46] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'patfive', 'nationality': 'Italian', 'phone': '111111611', 'birthday': '1980-01-01', 'email': 'patfive@gmail.com', 'password': 'patfive'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:20:59] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'astwo', 'nationality': 'Portuguese', 'phone': '123451789', 'birthday': '1980-01-01', 'email': 'astwo@gmail.com', 'password': 'astwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+ERROR:logger:POST /dbproj/register/assistant - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(123451789) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:23:19] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'astwo', 'nationality': 'French', 'phone': '123451719', 'birthday': '1980-01-01', 'email': 'astwo@gmail.com', 'password': 'astwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+ERROR:logger:POST /dbproj/register/assistant - error: tuple index out of range
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:23:25] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'Bob', 'nationality': 'Portuguese', 'phone': '638025584', 'birthday': '1980-01-01', 'email': 'nurse710@gmail.com', 'password': 'Password399', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '1'}
+ERROR:logger:POST /dbproj/register/nurse - error: invalid input syntax for type bigint: "2022-01-01"
+LINE 3:                 VALUES ('2022-01-01', '2022-01-01', '2023-01...
+                                ^
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:24:35] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'astwo', 'nationality': 'Italian', 'phone': '123451719', 'birthday': '1980-01-01', 'email': 'astwo@gmail.com', 'password': 'astwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+ERROR:logger:POST /dbproj/register/assistant - error: invalid input syntax for type bigint: "2022-01-01"
+LINE 3:                 VALUES ('2022-01-01', '2022-01-01', '2023-01...
+                                ^
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:24:41] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'astwo', 'nationality': 'Italian', 'phone': '123451719', 'birthday': '1980-01-01', 'email': 'astwo@gmail.com', 'password': 'astwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:25:25] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'Jane', 'nationality': 'Spanish', 'phone': '328729059', 'birthday': '1980-01-01', 'email': 'nurse357@gmail.com', 'password': 'Password533', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:25:39] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docone', 'nationality': 'Spanish', 'phone': '222222222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(222222222) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:25:53] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docone', 'nationality': 'Spanish', 'phone': '222122222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_email_key"
+DETAIL:  Key (email)=(docone@gmail.com) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:25:57] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docone', 'nationality': 'Italian', 'phone': '222522222', 'birthday': '1980-01-01', 'email': 'docone@gmail.com', 'password': 'docone', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_email_key"
+DETAIL:  Key (email)=(docone@gmail.com) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:26:01] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docsix', 'nationality': 'Portuguese', 'phone': '222522222', 'birthday': '1980-01-01', 'email': 'docsix@gmail.com', 'password': 'docsix', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Cambridge', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:26:11] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'French', 'phone': '2225221122', 'birthday': '1980-01-01', 'email': 'docseven@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: value "2225221122" is out of range for type integer
+LINE 3:                 VALUES ('docseven', 'French', '2225221122', ...
+                                                      ^
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:28:00] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'French', 'phone': '222522112', 'birthday': '1980-01-01', 'email': 'docseven@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:28:06] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'French', 'phone': '222522112', 'birthday': '1980-01-01', 'email': 'docseven@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(222522112) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:29:49] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'Italian', 'phone': '222522112', 'birthday': '1980-01-01', 'email': 'doc1@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(222522112) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:29:58] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'Portuguese', 'phone': '222512112', 'birthday': '1980-01-01', 'email': 'doc1@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:30:00] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'French', 'phone': '262512112', 'birthday': '1980-01-01', 'email': 'doc6@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:30:09] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'Italian', 'phone': '262512112', 'birthday': '1980-01-01', 'email': 'doc6@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_phone_key"
+DETAIL:  Key (phone)=(262512112) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:30:33] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'docseven', 'nationality': 'Spanish', 'phone': '262511112', 'birthday': '1980-01-01', 'email': 'do111@gmail.com', 'password': 'docseven', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Stanford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology']}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 18:30:43] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 19:49:02] "[31m[1mPOST /dbproj/prescription HTTP/1.1[0m" 401 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'docone@gmail.com', 'password': 'docone'}
+DEBUG:logger:POST /dbproj/user - user_id: 2, role: doctor
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 19:49:12] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'type': 'appointment', 'event_id': 1, 'validity': '2014-01-02', 'medicines': [{'medicine': 'Morphine', 'posology_dose': 123, 'posology_frequency': 'Morning'}]}
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 19:49:20] "POST /dbproj/prescription HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/May/2024 19:49:25] "POST /dbproj/prescription HTTP/1.1" 200 -
