@@ -2,15 +2,15 @@ SELECT month, name, total_surgeries
 FROM
 (
     SELECT
-    TO_CHAR(date_trunc('month', surgeries.data), 'YYYY-MM') AS month,
-    person.name,
+    TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY-MM') AS month,
+    service_user.name,
     COUNT(*) AS total_surgeries,
-    RANK() OVER (PARTITION BY TO_CHAR(date_trunc('month', surgeries.data), 'YYYY-MM') ORDER BY COUNT(*) DESC) as rank
+    RANK() OVER (PARTITION BY TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY-MM') ORDER BY COUNT(*) DESC) as rank
 
-    FROM surgeries
-    JOIN person ON person.cc = surgeries.doctors_employees_person_cc
-    WHERE surgeries.data >= (NOW() - INTERVAL '1 year')
-    GROUP BY TO_CHAR(date_trunc('month', surgeries.data), 'YYYY-MM'), person.name
+    FROM surgery
+    JOIN service_user ON service_user.user_id = surgery.doctor_employee_contract_service_user_user_id
+    WHERE surgery.surg_date >= (NOW() - INTERVAL '1 year')
+    GROUP BY TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY-MM'), service_user.name
 
 )AS sub
 

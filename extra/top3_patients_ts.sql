@@ -7,17 +7,17 @@ SELECT
 
 FROM (
     SELECT
-        person.name AS nome,
-        SUM(billings.payed) OVER (PARTITION BY person.name) AS total_payed,
-        appointments.id_app AS app_id,
-        appointments.doctors_employees_person_cc AS doctor_id,
-        appointments.data AS date
+        service_user.name AS nome,
+        SUM(bill.already_paid) OVER (PARTITION BY service_user.name) AS total_payed,
+        appointment.app_id AS app_id,
+        appointment.doctor_employee_contract_service_user_user_id AS doctor_id,
+        appointment.app_date AS date
 
     FROM
-        person
-        JOIN patients ON person.cc = patients.person_cc
-        JOIN appointments ON patients.person_cc = appointments.patients_person_cc
-        JOIN billings ON appointments.billings_id_bill = billings.id_bill
+        service_user
+        JOIN patient ON service_user.user_id = patient.service_user_user_id
+        JOIN appointment ON patient.service_user_user_id = appointment.patient_service_user_user_id
+        JOIN bill ON appointment.bill_bill_id = bill.bill_id
 )sub
 
 ORDER BY

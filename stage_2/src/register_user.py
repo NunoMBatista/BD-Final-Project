@@ -144,8 +144,7 @@ def register_service_user(user_type, extra_fields):
             cur.close()      
         
         return response
-        
-        
+             
 def register_patient():
     return register_service_user('patient', [])
 

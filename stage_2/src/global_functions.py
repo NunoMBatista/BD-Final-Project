@@ -109,9 +109,9 @@ def payload_contains_dangerous_chars(payload):
         # If it's a list or tuple, iterate over the elements and check each one
         elif isinstance(value, (list, tuple)):
             for element in value:
-                if (isinstance(element, str) and string_contains_dangerous_chars(element)):
+                if isinstance(element, str) and string_contains_dangerous_chars(element):
                     return True
-                elif (isinstance(element, dict) and payload_contains_dangerous_chars(element)):
+                elif isinstance(element, (dict, list, tuple)) and payload_contains_dangerous_chars({0: element}):
                     return True
         # If it's a string, check for dangerous characters
         elif isinstance(value, str):
