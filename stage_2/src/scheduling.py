@@ -345,5 +345,8 @@ def schedule_surgery(hospitalization_id):
         
         if cur is not None:
             cur.close()
-                    
+        
+        if conn is not None:
+            conn.close()
+            
     return flask.jsonify(response)    

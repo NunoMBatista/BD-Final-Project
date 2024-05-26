@@ -139,10 +139,12 @@ def register_service_user(user_type, extra_fields):
         if(commit_success == False):
             cur.execute('ROLLBACK;')
         
+        if cur is not None:
+            cur.close()
+        
         if conn is not None:
             conn.close()
-            cur.close()      
-        
+            
         return response
              
 def register_patient():

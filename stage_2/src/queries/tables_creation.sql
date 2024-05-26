@@ -167,7 +167,6 @@ CREATE TABLE rank_rank (
 CREATE TABLE specialization_specialization (
 	specialization_spec_id	 BIGINT,
 	specialization_spec_id1 BIGINT NOT NULL
-	--PRIMARY KEY(specialization_spec_id)
 );
 
 CREATE TABLE specialization_doctor (
@@ -188,4 +187,63 @@ CREATE TABLE hospitalization_prescription (
 	PRIMARY KEY(prescription_presc_id)
 );
 
+
+
+-- INDEXES
+
+-- Indexes for date fields
+CREATE INDEX idx_employee_contract_start_date
+ON employee_contract (contract_start_date);
+
+CREATE INDEX idx_employee_contract_end_date
+ON employee_contract (contract_end_date);
+
+CREATE INDEX idx_doctor_graduation_date
+ON doctor (graduation_date);
+
+CREATE INDEX idx_appointment_app_date
+ON appointment (app_date);
+
+CREATE INDEX idx_surgery_surg_date
+ON surgery (surg_date);
+
+CREATE INDEX idx_hospitalization_start_date
+ON hospitalization (start_date);
+
+CREATE INDEX idx_hospitalization_end_date
+ON hospitalization (end_date);
+
+CREATE INDEX idx_payment_payment_date
+ON payment (payment_date);
+
+-- Indexes for user names
+CREATE INDEX idx_service_user_name
+ON service_user (name);
+
+-- Indexes for user IDs
+CREATE INDEX idx_service_user_user_id
+ON service_user (user_id);
+
+CREATE INDEX idx_employee_contract_service_user_user_id
+ON employee_contract (service_user_user_id);
+
+CREATE INDEX idx_assistant_employee_contract_service_user_user_id
+ON assistant (employee_contract_service_user_user_id);
+
+CREATE INDEX idx_nurse_employee_contract_service_user_user_id
+ON nurse (employee_contract_service_user_user_id);
+
+CREATE INDEX idx_doctor_employee_contract_service_user_user_id
+ON doctor (employee_contract_service_user_user_id);
+
+CREATE INDEX idx_patient_service_user_user_id
+ON patient (service_user_user_id);
+
+-- Indexes for emails
+CREATE INDEX idx_service_user_email
+ON service_user (email);
+
+-- Indexes for bill IDs
+CREATE INDEX idx_bill_bill_id
+ON bill (bill_id);
 

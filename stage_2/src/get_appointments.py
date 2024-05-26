@@ -54,7 +54,10 @@ def get_appointments(user_id):
         return flask.jsonify(response)
     
     finally:
-        cur.close()
-        conn.close()
+        if cur is not None:
+            cur.close()
         
+        if conn is not None:
+            conn.close()
+            
     return flask.jsonify(response)

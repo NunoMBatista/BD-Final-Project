@@ -21,5 +21,3 @@ SELECT
     COALESCE((SELECT amount_spent FROM payments_sum), 0) AS amount_spent,
     COALESCE((SELECT surgeries FROM surgeries_count), 0) AS surgeries,
     COALESCE((SELECT prescriptions FROM prescriptions_count), 0) AS prescriptions; 
-
-COMMIT;

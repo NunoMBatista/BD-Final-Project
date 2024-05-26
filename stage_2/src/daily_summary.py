@@ -1,8 +1,6 @@
 import flask
-import logging
 import psycopg2
-import time
-import jwt
+
 from psycopg2.extras import RealDictCursor
 
 from global_functions import db_connection, logger, StatusCodes
@@ -21,7 +19,7 @@ def daily_summary(date_str):
             cur.execute(query, (date_str, date_str, date_str))
         
         summary = cur.fetchall()
-        
+        cur.execute('COMMIT;')
         response = {
             'status': StatusCodes['success'],
             'errors': None,
@@ -37,8 +35,10 @@ def daily_summary(date_str):
         return flask.jsonify(response)
     
     finally:
+        if cur is not None:
+            cur.close()
+        
         if conn is not None:
             conn.close()
-            cur.close()
             
         return flask.jsonify(response)

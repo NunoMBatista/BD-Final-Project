@@ -21,5 +21,3 @@ LEFT JOIN hospitalization h ON hp.hospitalization_hosp_id = h.hosp_id
 
 WHERE a.patient_service_user_user_id = %s OR h.patient_service_user_user_id = %s
 GROUP BY p.presc_id, p.validity
-
-COMMIT;

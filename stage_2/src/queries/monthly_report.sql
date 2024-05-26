@@ -14,7 +14,7 @@ surgeries AS (
     service_user.name,
     COUNT(*) AS total_surgeries,
     -- Rank the doctors by the number of surgeries they performed in each month
-    RANK() OVER (PARTITION BY TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY Month') ORDER BY COUNT(*) DESC) as rank
+    RANK() OVER (PARTITION BY TO_CHAR(date_trunc('month', surgery.surg_date), 'YYYY Month') ORDER BY COUNT(*) DESC) AS rank
     FROM surgery
     JOIN service_user ON service_user.user_id = surgery.doctor_employee_contract_service_user_user_id
     WHERE surgery.surg_date >= (NOW() - INTERVAL '1 year')
@@ -23,10 +23,8 @@ surgeries AS (
 
 SELECT 
     months.month, 
-    COALESCE(surgeries.name) AS name, -- If there are no surgeries, just don't show the doctor name
+    COALESCE(surgeries.name, 'NO SURGERIES') AS name, -- If there are no surgeries, show 'NO SURGERIES'
     COALESCE(surgeries.total_surgeries, 0) AS total_surgeries 
 FROM months
 LEFT JOIN surgeries ON months.month = surgeries.month AND surgeries.rank = 1 -- Only show the doctor with the most surgeries in each month
 ORDER BY TO_DATE(months.month, 'YYYY Month') DESC;
-
-COMMIT;

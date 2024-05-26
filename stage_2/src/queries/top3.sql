@@ -12,6 +12,7 @@ WITH top_patients AS (
         UNION ALL
         SELECT bill_bill_id, patient_service_user_user_id FROM hospitalization -- Get the patient ID from the hospitalization associated with the bill
     ) AS bill_user ON bill.bill_id = bill_user.bill_bill_id
+    WHERE payment_date >= NOW() - INTERVAL '30 days' -- Filter payments from the last 30 days
     GROUP BY patient_service_user_user_id -- Aggregate by patient ID
     ORDER BY total_paid DESC 
     LIMIT 3 -- Only get the top 3 patients 
@@ -31,5 +32,3 @@ LEFT JOIN hospitalization h ON tp.patient_id = h.patient_service_user_user_id --
 GROUP BY su.name, tp.total_paid -- Group by patient name and total paid
 ORDER BY tp.total_paid DESC; -- Order by total paid in descending order
 
-
-COMMIT;

@@ -80,6 +80,7 @@ def execute_payment(bill_id):
                     SELECT (total_cost - already_paid) as remaining_cost  
                     FROM bill 
                     WHERE bill_id = %s
+                    FOR UPDATE
                     """, (bill_id,))
         remaining_cost = cur.fetchone()[0]
         
@@ -108,8 +109,11 @@ def execute_payment(bill_id):
         if not commit_success:
             cur.execute('ROLLBACK;')
         
+        if cur is not None:
+            cur.close()
+        
         if conn is not None:
             conn.close()
-        
+            
         return flask.jsonify(response)   
     

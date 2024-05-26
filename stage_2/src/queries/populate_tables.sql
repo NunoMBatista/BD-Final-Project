@@ -18,7 +18,7 @@ INSERT INTO rank_rank (rank_rank_id, rank_rank_id1) VALUES (2, 3); -- Senior Nur
 INSERT INTO specialization (spec_id, spec_name) VALUES (1, 'Neurology');
 INSERT INTO specialization (spec_id, spec_name) VALUES (2, 'Pediatric Neurology');
 INSERT INTO specialization (spec_id, spec_name) VALUES (3, 'Neurophysiology');
-INSERT INTO specialization (spec_id, spec_name) VALUES (4, 'Neuroopathology');
+INSERT INTO specialization (spec_id, spec_name) VALUES (4, 'Neuropathology');
 
 -- Radiology
 INSERT INTO specialization (spec_id, spec_name) VALUES (5, 'Radiology');

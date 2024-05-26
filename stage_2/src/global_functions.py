@@ -23,15 +23,18 @@ SURGERY_DURATION = '2 hours'
 
 # Connect to the database
 def db_connection():
-    db = psycopg2.connect(
-        user = 'hms_admin',
-        password = 'hms_admin',
-        host = '127.0.0.1',
-        port = '5432',
-        database = 'hms_db'
-    )
-    
-    return db
+    try:
+        db = psycopg2.connect(
+            user = 'hms_admin',
+            password = 'hms_admin',
+            host = '127.0.0.1',
+            port = '5432',
+            database = 'hms_db'
+        )
+        return db
+    except (Exception, psycopg2.DatabaseError) as error:
+        logger.error(f'Error connecting to the database: {error}')
+        return None
 
 # Run a SQL script
 def run_sql_script(script):
@@ -118,3 +121,52 @@ def payload_contains_dangerous_chars(payload):
             if string_contains_dangerous_chars(value):
                 return True
     return False
+
+# Setup/reset database
+def setup_database():
+    print("Setting up the database")
+    
+    # Disconnect all users
+    run_sql_script('queries/disconnect_users.sql')
+
+    # Remove every table if they exist
+    run_sql_script('queries/drop_tables.sql')
+
+    # Create the tables and add indexing
+    run_sql_script('queries/tables_creation.sql')
+    
+    # Create the constraints
+    run_sql_script('queries/tables_constraints.sql')
+    
+    # Populate the tables
+    run_sql_script('queries/populate_tables.sql')
+    
+    # Create the triggers
+    run_sql_script('queries/create_bill_triggers.sql')
+    
+# Check if the database is properly setup
+def check_database_setup():
+    # Check if the database is set up
+    try:
+        conn = db_connection()
+        cur = conn.cursor()            
+        with open('queries/check_setup.sql', 'r') as f:
+            query = f.read()
+            
+            cur.execute(query)
+            result = cur.fetchall()
+            
+            # Check if any of the tables are not present
+            for row in result:
+                if False in row:
+                    raise Exception('The database is not properly set up. Please run the script with the --setup flag')
+            
+    
+    except Exception as e:  
+        print(str(e))
+        exit(1)
+    
+    finally:
+        cur.close()
+        conn.close()
+    

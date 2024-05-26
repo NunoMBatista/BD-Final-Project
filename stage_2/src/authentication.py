@@ -112,8 +112,12 @@ def authenticate_user():
         return flask.jsonify(response)
  
     finally:
+        if cur is not None:
+            cur.close()
+        
         if conn is not None:
             conn.close()
+            
     
     return response
     

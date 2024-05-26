@@ -16,14 +16,14 @@ def top3():
         with open('queries/top3.sql', 'r') as f:
             query = f.read()
             cur.execute(query)
-        
-        top3_list = cur.fetchall()     
-        response = {
-            'status': StatusCodes['success'],
-            'errors': None,
-            'response': top3_list
-        }
-        
+            top3_list = cur.fetchall()     
+            cur.execute('COMMIT;')
+            response = {
+                'status': StatusCodes['success'],
+                'errors': None,
+                'response': top3_list
+            }
+
     except (Exception, psycopg2.DatabaseError) as error:
         logger.error(f'GET /dbproj/top3 - {error}')
         response = {
@@ -33,8 +33,10 @@ def top3():
         return flask.jsonify(response)
     
     finally:
+        if cur is not None:
+            cur.close()
+        
         if conn is not None:
             conn.close()
-            cur.close()
             
         return flask.jsonify(response)

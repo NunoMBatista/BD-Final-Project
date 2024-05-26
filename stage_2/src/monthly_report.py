@@ -18,6 +18,7 @@ def monthly_report():
             cur.execute(query)
         
         summary = cur.fetchall()
+        cur.execute('COMMIT;')
         response = {
             'status': StatusCodes['success'],
             'errors': None,
@@ -33,6 +34,9 @@ def monthly_report():
         return flask.jsonify(response)
     
     finally:
+        if cur is not None:
+            cur.close()
+        
         if conn is not None:
             conn.close()
             
