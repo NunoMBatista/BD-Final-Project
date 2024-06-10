@@ -34,3 +34,7 @@ def verify_password(stored_key, provided_password):
 
     # Compare the stored key with the new key
     return new_key == stored_key
+
+
+
+

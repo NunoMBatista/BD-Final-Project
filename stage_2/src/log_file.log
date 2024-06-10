@@ -199,3 +199,82 @@ DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 11, 'doctor': 9
 INFO:werkzeug:127.0.0.1 - - [27/May/2024 13:18:00] "POST /dbproj/surgery HTTP/1.1" 200 -
 DEBUG:logger:GET /report
 INFO:werkzeug:127.0.0.1 - - [27/May/2024 13:18:05] "GET /dbproj/report HTTP/1.1" 200 -
+INFO:logger:Checking if the database is set up
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'PatientOne', 'nationality': 'Portuguese', 'phone': '482533018', 'birthday': '1980-01-01', 'email': 'PatientOne@gmail.com', 'password': 'PatientOne'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:08:04] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'DoctorOne', 'nationality': 'Spanish', 'phone': '241522045', 'birthday': '1980-01-01', 'email': 'DoctorOne@gmail.com', 'password': 'DoctorOne', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Cambridge', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology', 'Pediatric Neurology']}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:08:14] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'AssistantOne', 'nationality': 'French', 'phone': '347297264', 'birthday': '1980-01-01', 'email': 'AssistantOne@gmail.com', 'password': 'AssistantOne', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:08:29] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'AssistantOne', 'nationality': 'German', 'phone': '750601442', 'birthday': '1980-01-01', 'email': 'AssistantOne@gmail.com', 'password': 'AssistantOne', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+ERROR:logger:POST /dbproj/register/assistant - error: duplicate key value violates unique constraint "service_user_email_key"
+DETAIL:  Key (email)=(AssistantOne@gmail.com) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:08:30] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'Alice', 'nationality': 'French', 'phone': '752883077', 'birthday': '1980-01-01', 'email': 'nurse352@gmail.com', 'password': 'Password996', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:08:36] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'John', 'nationality': 'Italian', 'phone': '615205513', 'birthday': '1980-01-01', 'email': 'nurse934@gmail.com', 'password': 'Password718', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:08:36] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+INFO:logger:Checking if the database is set up
+INFO:logger:Starting HMS server on http://127.0.0.1:8080
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'PatientOne', 'nationality': 'Spanish', 'phone': '764222064', 'birthday': '1980-01-01', 'email': 'PatientOne@gmail.com', 'password': 'PatientOne'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:09:39] "POST /dbproj/register/patient HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'DoctorTwo', 'nationality': 'French', 'phone': '505266931', 'birthday': '1980-01-01', 'email': 'DoctorTwo@gmail.com', 'password': 'DoctorTwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Cambridge', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology', 'Pediatric Neurology']}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:09:40] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'John', 'nationality': 'Spanish', 'phone': '303927928', 'birthday': '1980-01-01', 'email': 'nurse773@gmail.com', 'password': 'Password794', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:09:44] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'Alice', 'nationality': 'Portuguese', 'phone': '273105658', 'birthday': '1980-01-01', 'email': 'nurse890@gmail.com', 'password': 'Password323', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:09:45] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'DoctorOne', 'nationality': 'Italian', 'phone': '713933141', 'birthday': '1980-01-01', 'email': 'DoctorOne@gmail.com', 'password': 'DoctorOne', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology', 'Pediatric Neurology']}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:09:49] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'AssistantOne', 'nationality': 'Spanish', 'phone': '251058156', 'birthday': '1980-01-01', 'email': 'AssistantOne@gmail.com', 'password': 'AssistantOne', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:09:54] "POST /dbproj/register/assistant HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/user - payload: {'email': 'AssistantOne@gmail.com', 'password': 'AssistantOne'}
+DEBUG:logger:POST /dbproj/user - user_id: 6, role: assistant
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:02] "PUT /dbproj/user HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 11, 'doctor': 9, 'date': '2024-04-12T020:10:00Z', 'type': 'Ophthalmology', 'nurses': [{'nurse_id': '3', 'role': 'Euthanasist'}, {'nurse_id': '4', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/None - error: insert or update on table "hospitalization" violates foreign key constraint "hospitalization_fk2"
+DETAIL:  Key (patient_service_user_user_id)=(11) is not present in table "patient".
+
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:10] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 1, 'doctor': 9, 'date': '2024-04-12T020:10:00Z', 'type': 'Ophthalmology', 'nurses': [{'nurse_id': '3', 'role': 'Euthanasist'}, {'nurse_id': '4', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/2 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk2"
+DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(9) is not present in table "doctor".
+
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:18] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 1, 'doctor': 9, 'date': '2024-04-12T020:10:00Z', 'type': 'Ophthalmology', 'nurses': [{'nurse_id': '3', 'role': 'Euthanasist'}, {'nurse_id': '4', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/3 - error: insert or update on table "surgery" violates foreign key constraint "surgery_fk2"
+DETAIL:  Key (doctor_employee_contract_service_user_user_id)=(9) is not present in table "doctor".
+
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:19] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 1, 'doctor': 2, 'date': '2024-04-12T020:10:00Z', 'type': 'Ophthalmology', 'nurses': [{'nurse_id': '3', 'role': 'Euthanasist'}, {'nurse_id': '4', 'role': 'Preoperative'}]}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:23] "POST /dbproj/surgery HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'Alice', 'nationality': 'French', 'phone': '464019592', 'birthday': '1980-01-01', 'email': 'nurse420@gmail.com', 'password': 'Password398', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '2'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:37] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'John', 'nationality': 'German', 'phone': '800960935', 'birthday': '1980-01-01', 'email': 'nurse687@gmail.com', 'password': 'Password988', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'rank_id': '3'}
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:38] "POST /dbproj/register/nurse HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'DoctorTwo', 'nationality': 'German', 'phone': '758670346', 'birthday': '1980-01-01', 'email': 'DoctorTwo@gmail.com', 'password': 'DoctorTwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Harvard', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology', 'Pediatric Neurology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_email_key"
+DETAIL:  Key (email)=(DoctorTwo@gmail.com) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:59] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'DoctorTwo', 'nationality': 'Portuguese', 'phone': '178769805', 'birthday': '1980-01-01', 'email': 'DoctorTwo@gmail.com', 'password': 'DoctorTwo', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'Oxford', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology', 'Pediatric Neurology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_email_key"
+DETAIL:  Key (email)=(DoctorTwo@gmail.com) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:10:59] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/register/service_user - payload: {'name': 'DoctorOne', 'nationality': 'Spanish', 'phone': '362238557', 'birthday': '1980-01-01', 'email': 'DoctorOne@gmail.com', 'password': 'DoctorOne', 'contract_start_date': '2022-01-01', 'contract_end_date': '2023-01-01', 'university': 'MIT', 'graduation_date': '2005-01-01', 'specializations': ['Neurophysiology', 'Pediatric Neurology']}
+ERROR:logger:POST /dbproj/register/doctor - error: duplicate key value violates unique constraint "service_user_email_key"
+DETAIL:  Key (email)=(DoctorOne@gmail.com) already exists.
+
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:11:04] "POST /dbproj/register/doctor HTTP/1.1" 200 -
+DEBUG:logger:POST /dbproj/surgery/None - payload: {'patient_id': 1, 'doctor': 5, 'date': '2024-04-12T020:10:00Z', 'type': 'Ophthalmology', 'nurses': [{'nurse_id': '8', 'role': 'Euthanasist'}, {'nurse_id': '7', 'role': 'Preoperative'}]}
+ERROR:logger:POST /dbproj/surgery/None - error: Patient is not available on the selected date
+INFO:werkzeug:127.0.0.1 - - [28/May/2024 22:11:33] "POST /dbproj/surgery HTTP/1.1" 200 -
